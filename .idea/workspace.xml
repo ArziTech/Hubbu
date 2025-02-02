@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+    <list default="true" id="57d22ed1-ac14-488a-a6f9-efc3e6807854" name="Changes" comment="" />
     <list default="true" id="57d22ed1-ac14-488a-a6f9-efc3e6807854" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/vercel.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
@@ -87,6 +88,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "reset-src",
+    "last_opened_file_path": "C:/Code/WorkingProject/hubbu - Copy",
     "git-widget-placeholder": "reset",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -111,7 +114,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1738459037121</updated>
-      <workItem from="1738459039543" duration="317000" />
     </task>
     <servers />
   </component>
