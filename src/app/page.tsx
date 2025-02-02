@@ -1,7 +1,7 @@
 import Image from "next/image";
-import {ModeToggle} from "@/components/global/theme-toggle";
-import {Button} from "@/components/ui/button";
-import {Card, CardContent, CardHeader} from "@/components/ui/card";
+import {ModeToggle} from "../components/global/theme-toggle";
+import {Button} from "../components/ui/button";
+import {Card, CardContent, CardHeader} from "../components/ui/card";
 
 export default function Home() {
   return (
