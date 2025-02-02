@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Hubbu.iml" filepath="$PROJECT_DIR$/.idea/Hubbu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/hubbu.iml" filepath="$PROJECT_DIR$/.idea/hubbu.iml" />
     </modules>
   </component>
 </project>
