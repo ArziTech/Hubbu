@@ -9,7 +9,14 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: 'var(--font-poppins)',
+        "nova-square": 'var(--font-nova-square)',
+      },
       colors: {
+        // "primary-gradient": 'linear-gradient(var(--gradient))',
+        'custom-gradient': 'linear-gradient(to right, #ff7e5f, #feb47b)',
+        text:'hsl(var(--text))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -22,11 +29,9 @@ export default {
         },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
@@ -34,7 +39,6 @@ export default {
         },
         accent: {
           DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -90,5 +94,6 @@ export default {
       }
     }
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
