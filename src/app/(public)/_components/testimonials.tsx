@@ -48,7 +48,7 @@ const testimonials: Testimoni[] = [
     id:'5',
     name: "NOVI & INDRA",
     message:
-      "Saya membuat situs undangan pernikahan saya hanya dalam satu hari, dan itu sempurna sejak awal.",
+      "Saya membuat situs undangan pernikahan saya hanya dalam satu hari, dan itu sempurna sejak awal. ",
     rating: 5,
     image: "/images/testimonials5.png"
   }
@@ -59,8 +59,8 @@ const Testimonials = () => {
   return (
     <section className={"w-full"}>
       <MaxwidthWrapper className={"grid grid-cols-2 gap-2"}>
-        <div className={"col-span-2 h-[512px] bg-card flex items-center mb-4"}>
-          <div className={'flex flex-col gap-6 items-center w-[717px] mx-auto'}>
+        <div className={"col-span-2 p-6 bg-card flex items-center mb-4"}>
+          <div className={'flex flex-col gap-6 items-center   mx-auto'}>
             <h2 className={'text-center text-3xl text-accent font-semibold'}>Testimoni</h2>
             <Quote className={'fill-primary text-transparent size-8'}></Quote>
             <div className={"flex gap-2"}>
@@ -77,7 +77,7 @@ const Testimonials = () => {
           </div>
         </div>
         {testimonials.slice(1, testimonials.length+1).map(({id, name,message, image,rating})=>(
-          <div key={id} className={"flex items-center justify-center gap-6 p-4 border border-border w-full h-[350px]"}>
+          <div key={id} className={"col-span-2 tablet:col-span-1 flex items-center justify-center gap-6 p-4 border border-border w-full py-6"}>
             <Image src={image} alt={name} width={70} height={70} className={'size-[70px]'}/>
             <div className={'flex flex-col gap-3'}>
               <div className={"flex gap-2"}>
@@ -88,7 +88,7 @@ const Testimonials = () => {
                   />
                 ))}
               </div>
-              <p className={'text-[18px] text-text font-medium'}>{message}</p>
+              <p className={'text-[18px] text-text '}>{message}</p>
               <p className={'font-bold text-secondary'}>{name}</p>
             </div>
           </div>

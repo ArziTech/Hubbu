@@ -8,6 +8,11 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      'phone': '376px',
+      'tablet': '601px',
+      'desktop': '961px',
+    },
     extend: {
       fontFamily: {
         poppins: 'var(--font-poppins)',

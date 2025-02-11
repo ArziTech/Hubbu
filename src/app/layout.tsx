@@ -28,11 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} ${novaSquare.variable}   antialiased`}
+        className={`${poppins.variable} ${novaSquare.variable} font-poppins antialiased`}
       >
       <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
       >
