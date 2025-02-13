@@ -1,0 +1,120 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String         @id @default(cuid())
+  name         String?
+  username     String?        @unique
+  email        String         @unique
+  image        String?
+  password     String?
+  accounts     Account[]
+  template     Template[]
+  testimonials Testimonials[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String  @unique
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User?   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  AUDIO
+}
+
+model Template {
+  id                 String              @id @default(cuid())
+  title              String
+  price              Int                 @default(100000)
+  description        String
+  features           String              @db.Text
+  content            String              @db.Text
+  status             TemplateStatus      @default(DRAFT)
+  purchasedTime      Int                 @default(0)
+  averageRating      Int                 @default(0)
+  additionalFeatures AdditionalFeature[]
+
+  templateCategoryId String
+  templateCategory   TemplateCategory @relation(fields: [templateCategoryId], references: [id])
+
+  testimonials  Testimonials[]
+  createdBy     String
+  createdByUser User           @relation(fields: [createdBy], references: [id])
+  // transactions TODO
+
+  templateMediaBucket TemplateMediaBucket[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AdditionalFeature {
+  id       String     @id @default(cuid())
+  name     String
+  Template Template[]
+}
+
+enum TemplateStatus {
+  DRAFT
+  ON_SALE
+  NOT_AVAILABLE
+}
+
+model TemplateCategory {
+  id       String     @id @default(cuid())
+  title    String
+  Template Template[]
+}
+
+model TemplateMediaBucket {
+  id         String    @id @default(cuid())
+  name       String
+  type       MediaType
+  timeUsed   Int       @default(0)
+  keepItem   Boolean
+  templateId String
+  template   Template  @relation(fields: [templateId], references: [id])
+}
+
+model Testimonials {
+  id      String @id @default(cuid())
+  name    String
+  rating  Int
+  message String
+
+  templateId String
+  template   Template @relation(fields: [templateId], references: [id])
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  // transactions TODO
+}

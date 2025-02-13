@@ -15,7 +15,7 @@ const Overview = () => {
           <h2 className={'text-3xl desktop:text-4xl font-semibold text-accent text-center'}>Lebih dari 150 Template undangan yang tersedia</h2>
           <p className={'text-text text-xl desktop:text-2xl text-white'}>Banyak pilihan sesuai selera dan bisa dikustomisasi</p>
         </div>
-        <Image src={overviewImage} className={'min-w-[827px]'} alt={'banyak pilihan template'}></Image>
+        <Image src={overviewImage} className={'min-w-[827px]'} alt={'banyak pilihan templates'}></Image>
         <Button variant={'default'} className={'mt-14 rounded-full text-xl' +
           ' font-medium p-4 hover:bg-accent'}>View all templates</Button>
       </MaxwidthWrapper>

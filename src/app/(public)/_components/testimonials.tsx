@@ -16,7 +16,7 @@ const testimonials: Testimoni[] = [
     id:'1',
     name: "SINTA & GEORGE",
     message:
-      "Saya sangat senang menggunakan website undangan pernikahan ini! Banyak pilihan template yang tersedia, dan saya bisa menggabungkan berbagai elemen sesuai keinginan. Prosesnya sangat mudah dan hasilnya pun memuaskan!",
+      "Saya sangat senang menggunakan website undangan pernikahan ini! Banyak pilihan templates yang tersedia, dan saya bisa menggabungkan berbagai elemen sesuai keinginan. Prosesnya sangat mudah dan hasilnya pun memuaskan!",
     rating: 5,
     image: "/images/testimonials1.png"
   },
@@ -40,7 +40,7 @@ const testimonials: Testimoni[] = [
     id:'4',
     name: "AHMAD & AISYAH",
     message:
-      "Banyak template menarik dan prosesnya mudah. Teman-teman saya terkesan dengan undangan yang saya pilih!",
+      "Banyak templates menarik dan prosesnya mudah. Teman-teman saya terkesan dengan undangan yang saya pilih!",
     rating: 5,
     image: "/images/testimonials4.png"
   },
