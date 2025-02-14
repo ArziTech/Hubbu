@@ -39,6 +39,7 @@ body {
     --card: 285, 44%, 95%;
     --card-foreground: 0, 0%, 100%;
     --primary: 274, 69%, 70%;
+    --primary-foreground: 0 0% 98%;
     --secondary: 274, 22%, 21%;
     --accent: 274, 95%, 36%;
     --border: 283, 38%, 82%;
@@ -77,6 +78,7 @@ body {
     --card: 285, 44%, 8%;
     --card-foreground: 0, 0%, 100%;
     --primary: 274, 69%, 70%;
+    --primary-foreground: 0 0% 98%;
     --secondary: 274, 22%, 21%;
     --accent: 274, 95%, 36%;
     --accent-foreground: 0, 0%, 100%;

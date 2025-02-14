@@ -91,7 +91,7 @@ enum TemplateStatus {
 
 model TemplateCategory {
   id       String     @id @default(cuid())
-  title    String
+  title    String     @unique
   Template Template[]
 }
 

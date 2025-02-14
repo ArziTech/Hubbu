@@ -2,6 +2,7 @@ import React from "react";
 import Image from 'next/image'
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
 import { Quote, Star } from "lucide-react";
+import Rating from "@/components/global/rating";
 
 interface Testimoni {
   id:string;
@@ -63,14 +64,7 @@ const Testimonials = () => {
           <div className={'flex flex-col gap-6 items-center   mx-auto'}>
             <h2 className={'text-center text-3xl text-accent font-semibold'}>Testimoni</h2>
             <Quote className={'fill-primary text-transparent size-8'}></Quote>
-            <div className={"flex gap-2"}>
-              {Array.from({ length: testimonials[0].rating }).map((_, idx) => (
-                <Star
-                  key={idx}
-                  className={"border-none text-transparent fill-amber-200 size-6"}
-                />
-              ))}
-            </div>
+            <Rating score={testimonials[0].rating}></Rating>
             <p className={'font-medium text-[22px] text-center'}>{testimonials[0].message}</p>
             <Image src={testimonials[0].image} alt={testimonials[0].name} width={120} height={120}></Image>
             <p className={'text-[18px] text-secondary font-medium'}>{testimonials[0].name}</p>
@@ -80,14 +74,7 @@ const Testimonials = () => {
           <div key={id} className={"col-span-2 tablet:col-span-1 flex items-center justify-center gap-6 p-4 border border-border w-full py-6"}>
             <Image src={image} alt={name} width={70} height={70} className={'size-[70px]'}/>
             <div className={'flex flex-col gap-3'}>
-              <div className={"flex gap-2"}>
-                {Array.from({ length: rating }).map((_, idx) => (
-                  <Star
-                    key={idx}
-                    className={"border-none text-transparent fill-amber-200 size-4"}
-                  />
-                ))}
-              </div>
+              <Rating score={rating}></Rating>
               <p className={'text-[18px] text-text '}>{message}</p>
               <p className={'font-bold text-secondary'}>{name}</p>
             </div>

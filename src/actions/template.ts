@@ -2,13 +2,35 @@ import { ActionResponse } from "@/lib/types";
 import { Template } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
+
+export interface GetTemplateType {
+  id: string;
+  title: string;
+  price: number;
+  averageRating: number;
+  description: string;
+  templateCategory: {title:string};
+}
+
 export async function getTemplates(numberItem?:number): Promise<
-  ActionResponse<Template[]>
+  ActionResponse<GetTemplateType[]>
 > {
   try {
-    const allTemplates = await prisma.template.findMany({
-      take: numberItem ? numberItem : 10,
+    const allTemplates: GetTemplateType[] = await prisma.template.findMany({
+      take: numberItem || 10,
       skip: 1,
+      select: {
+        id: true,
+        title: true,
+        price: true,
+        averageRating: true,
+        description: true,
+        templateCategory: {
+          select: {
+            title: true,
+          },
+        },
+      },
     });
 
     if (!allTemplates)

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins, Nova_Square } from "next/font/google";
 import "./globals.css";
 import {ThemeProvider} from "@/components/providers/theme-provider";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import ReactQuery from "@/components/providers/react-query";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -36,7 +38,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
       >
-        {children}
+        <NuqsAdapter>
+          <ReactQuery>
+            {children}
+          </ReactQuery>
+        </NuqsAdapter>
       </ThemeProvider>
       </body>
     </html>

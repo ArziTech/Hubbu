@@ -22,7 +22,7 @@ export default {
         // "primary-gradient": 'linear-gradient(var(--gradient))',
         'custom-gradient': 'linear-gradient(to right, #ff7e5f, #feb47b)',
         text:'hsl(var(--text))',
-        background: 'hsl(var(--background))',
+        background: { DEFAULT: "hsl(var(--background))" },
         foreground: 'hsl(var(--foreground))',
         card: {
           DEFAULT: 'hsl(var(--card))',
@@ -34,6 +34,7 @@ export default {
         },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))'
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
