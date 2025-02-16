@@ -9,7 +9,7 @@ interface SelectProps {
 }
 
 const Select = ({name,params, value, setParams}: SelectProps) => {
-  const formattedValue = value ? value.replaceAll(" ", "").toLowerCase() : null ;
+  const formattedValue = value ? value : null ;
   return (
     // need to check if it is active
     // if its acive highlight it

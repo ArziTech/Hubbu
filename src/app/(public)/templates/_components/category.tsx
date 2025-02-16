@@ -1,19 +1,12 @@
+'use client'
 import React from "react";
 import { LibraryBig } from "lucide-react";
 import Select from "@/app/(public)/templates/_components/select";
 import { useQueryState } from "nuqs";
-import { useQuery } from "react-query";
-import { getAllTemplateCategory } from "@/actions/template-category";
+import { TemplateCategory } from "@prisma/client";
 
-const Category = () => {
+const Category = ({categories}:{categories:TemplateCategory[]}) => {
   const [category, setCategory] = useQueryState('category')
-  const {data:result, isFetching } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getAllTemplateCategory
-  });
-
-  if(result?.status !== 'SUCCESS')
-    return <p>{result?.status}{" "}{result?.error}</p>
 
   return (
     <div>
@@ -27,7 +20,7 @@ const Category = () => {
         params={category}
         setParams={setCategory}
       />
-      {result.data?.map(({ id, title }) =>
+      {categories.map(({ id, title }) =>
         <Select
           key={id}
           name={title}

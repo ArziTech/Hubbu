@@ -1,6 +1,6 @@
 'use server'
 import { ActionResponse } from "@/lib/types";
-import { Prisma, TemplateCategory } from "@prisma/client";
+import {  TemplateCategory } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 export async function getAllTemplateCategory(): Promise<

@@ -1,5 +1,4 @@
 import { TemplateStatus, PrismaClient, Prisma } from '@prisma/client';
-import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient();
 
@@ -18,7 +17,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     averageRating: 5,
     templateCategory: {
       connectOrCreate: {
-        where: { id: "1" },
+        where: { title: "Modern" },
         create: { title: "Modern" }
       }
     },
@@ -36,6 +35,118 @@ const templates: Prisma.TemplateCreateInput[] = [
   },
   {
     id: "2",
+    title: 'Minimalist Business Card',
+    price: 50000,
+    description: 'A sleek and professional business card design.',
+    features: 'Custom logo, QR code support, Multiple fonts',
+    content: '<h1>Your Business, Your Identity</h1>',
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 25,
+    averageRating: 4.8,
+    templateCategory: {
+      connectOrCreate: {
+        where: { title: "Corporate" },
+        create: { title: "Corporate" }
+      }
+    },
+    createdByUser: {
+      connectOrCreate: {
+        where: { email: 'janedoe@example.com' },
+        create: {
+          name: 'Jane Doe',
+          username: 'janedoe',
+          email: 'janedoe@example.com',
+          password: hashedPassword
+        }
+      }
+    }
+  },
+  {
+    id: "3",
+    title: 'Vintage Poster Design',
+    price: 120000,
+    description: 'A retro-style poster template for events and promotions.',
+    features: 'Editable layers, High resolution, Print-ready',
+    content: '<h1>Classic and Timeless</h1>',
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 15,
+    averageRating: 4.6,
+    templateCategory: {
+      connectOrCreate: {
+        where: { title: "Vintage" },
+        create: { title: "Vintage" }
+      }
+    },
+    createdByUser: {
+      connectOrCreate: {
+        where: { email: 'vintageguru@example.com' },
+        create: {
+          name: 'Vintage Guru',
+          username: 'vintageguru',
+          email: 'vintageguru@example.com',
+          password: hashedPassword
+        }
+      }
+    }
+  },
+  {
+    id: "4",
+    title: 'Modern Resume Template',
+    price: 80000,
+    description: 'A clean and well-structured resume template.',
+    features: 'ATS-friendly, Customizable sections, Multiple color themes',
+    content: '<h1>Stand Out in Your Job Search</h1>',
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 40,
+    averageRating: 4.9,
+    templateCategory: {
+      connectOrCreate: {
+        where: { title: "Professional" },
+        create: { title: "Professional" }
+      }
+    },
+    createdByUser: {
+      connectOrCreate: {
+        where: { email: 'jobseekerpro@example.com' },
+        create: {
+          name: 'Job Seeker Pro',
+          username: 'jobseekerpro',
+          email: 'jobseekerpro@example.com',
+          password: hashedPassword
+        }
+      }
+    }
+  },
+  {
+    id: "5",
+    title: 'Creative Portfolio Website',
+    price: 300000,
+    description: 'A portfolio template for designers and creatives.',
+    features: 'Responsive layout, Custom galleries, Contact form',
+    content: '<h1>Showcase Your Best Work</h1>',
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 8,
+    averageRating: 4.7,
+    templateCategory: {
+      connectOrCreate: {
+        where: { title: "Creative" },
+        create: { title: "Creative" }
+      }
+    },
+    createdByUser: {
+      connectOrCreate: {
+        where: { email: 'designerpro@example.com' },
+        create: {
+          name: 'Designer Pro',
+          username: 'designerpro',
+          email: 'designerpro@example.com',
+          password: hashedPassword
+        }
+      }
+    }
+  },
+  {
+    id: "12",
     title: 'Minimalist Birthday Invitation',
     price: 150000,
     description: 'A sleek, minimalist templates for birthday parties.',
@@ -46,7 +157,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     averageRating: 4,
     templateCategory: {
       connectOrCreate: {
-        where: { id: "2" },
+        where: { title: "Minimalist" },
         create: { title: "Minimalist" }
       }
     },
@@ -63,7 +174,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     }
   },
   {
-    id: "3",
+    id: "13",
     title: 'Classic Business Brochure',
     price: 300000,
     description: 'A professional brochure templates for businesses.',
@@ -74,7 +185,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     averageRating: 5,
     templateCategory: {
       connectOrCreate: {
-        where: { id: "3" },
+        where: { title: "Business" },
         create: { title: "Business" }
       }
     },
@@ -91,7 +202,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     }
   },
   {
-    id: "4",
+    id: "14",
     title: 'Luxury Event Invitation',
     price: 500000,
     description: 'A luxurious design for high-end events.',
@@ -102,7 +213,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     averageRating: 5,
     templateCategory: {
       connectOrCreate: {
-        where: { id: "4" },
+        where: { title: "Luxury" },
         create: { title: "Luxury" }
       }
     },
@@ -119,7 +230,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     }
   },
   {
-    id: "5",
+    id: "15",
     title: 'Modern Portfolio Template',
     price: 250000,
     description: 'Perfect for showcasing creative work.',
@@ -130,7 +241,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     averageRating: 4,
     templateCategory: {
       connectOrCreate: {
-        where: { id: "5" },
+        where: { title: "Portfolio" },
         create: { title: "Portfolio" }
       }
     },
@@ -158,7 +269,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     averageRating: 4,
     templateCategory: {
       connectOrCreate: {
-        where: { id: "6" },
+        where: { title: "Travel" },
         create: { title: "Travel" }
       }
     },
@@ -186,7 +297,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     averageRating: 5,
     templateCategory: {
       connectOrCreate: {
-        where: { id: "7" },
+        where: { title: "Photography" },
         create: { title: "Photography" }
       }
     },
@@ -214,7 +325,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     averageRating: 4,
     templateCategory: {
       connectOrCreate: {
-        where: { id: "8" },
+        where: { title: "Food & Drink" },
         create: { title: "Food & Drink" }
       }
     },
@@ -242,7 +353,7 @@ const templates: Prisma.TemplateCreateInput[] = [
     averageRating: 5,
     templateCategory: {
       connectOrCreate: {
-        where: { id: "9" },
+        where: { title: "Education" },
         create: { title: "Education" }
       }
     },
@@ -257,7 +368,119 @@ const templates: Prisma.TemplateCreateInput[] = [
         }
       }
     }
-  }
+  },
+  {
+    id: "20",
+    title: 'Photography Portfolio',
+    price: 250000,
+    description: 'A professional portfolio template for photographers.',
+    features: 'High-resolution gallery, Fullscreen mode, Social media links',
+    content: '<h1>Showcase Your Best Shots</h1>',
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 12,
+    averageRating: 4.9,
+    templateCategory: {
+      connectOrCreate: {
+        where: { title: "Photography" },
+        create: { title: "Photography" }
+      }
+    },
+    createdByUser: {
+      connectOrCreate: {
+        where: { email: 'photoexpert@example.com' },
+        create: {
+          name: 'Photo Expert',
+          username: 'photoexpert',
+          email: 'photoexpert@example.com',
+          password: hashedPassword
+        }
+      }
+    }
+  },
+  {
+    id: "21",
+    title: 'E-commerce Landing Page',
+    price: 400000,
+    description: 'A conversion-optimized landing page for online stores.',
+    features: 'Product showcase, Call-to-action buttons, Payment integration',
+    content: '<h1>Boost Your Sales</h1>',
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 30,
+    averageRating: 4.8,
+    templateCategory: {
+      connectOrCreate: {
+        where: { title: "E-commerce" },
+        create: { title: "E-commerce" }
+      }
+    },
+    createdByUser: {
+      connectOrCreate: {
+        where: { email: 'storeowner@example.com' },
+        create: {
+          name: 'Store Owner',
+          username: 'storeowner',
+          email: 'storeowner@example.com',
+          password: hashedPassword
+        }
+      }
+    }
+  },
+  {
+    id: "22",
+    title: 'Digital Agency Website',
+    price: 350000,
+    description: 'A modern website template for digital agencies.',
+    features: 'SEO optimized, Client testimonials, Contact form',
+    content: '<h1>Grow Your Digital Presence</h1>',
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 20,
+    averageRating: 4.7,
+    templateCategory: {
+      connectOrCreate: {
+        where: { title: "Business" },
+        create: { title: "Business" }
+      }
+    },
+    createdByUser: {
+      connectOrCreate: {
+        where: { email: 'agencyowner@example.com' },
+        create: {
+          name: 'Agency Owner',
+          username: 'agencyowner',
+          email: 'agencyowner@example.com',
+          password: hashedPassword
+        }
+      }
+    }
+  },
+  {
+    id: "23",
+    title: 'Tech Conference Flyer',
+    price: 100000,
+    description: 'A stylish and informative flyer for tech events.',
+    features: 'Editable text, High resolution, Print-ready',
+    content: '<h1>Join the Future of Technology</h1>',
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 18,
+    averageRating: 4.6,
+    templateCategory: {
+      connectOrCreate: {
+        where: { title: "Events" },
+        create: { title: "Events" }
+      }
+    },
+    createdByUser: {
+      connectOrCreate: {
+        where: { email: 'eventplanner@example.com' },
+        create: {
+          name: 'Event Planner',
+          username: 'eventplanner',
+          email: 'eventplanner@example.com',
+          password: hashedPassword
+        }
+      }
+    }
+  },
 ];
 
 const testimonials: Prisma.TestimonialsCreateInput[] = [
