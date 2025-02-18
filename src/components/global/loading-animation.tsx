@@ -1,8 +1,12 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-export default function LoadingAnimation({className}:{className?:string}) {
+export default function LoadingAnimation({
+  className,
+}: {
+  className?: string;
+}) {
   const [dots, setDots] = useState("");
 
   useEffect(() => {
@@ -13,5 +17,9 @@ export default function LoadingAnimation({className}:{className?:string}) {
     return () => clearInterval(interval);
   }, []);
 
-  return <p className={cn("text-lg font-semibold text-gray-700", className)}>Loading{dots}</p>;
+  return (
+    <p className={cn("text-lg font-semibold text-gray-700", className)}>
+      Loading{dots}
+    </p>
+  );
 }

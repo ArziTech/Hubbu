@@ -6,12 +6,12 @@ import Cta from "@/app/(public)/_components/cta";
 
 export default function Home() {
   return (
-      <main className={'pt-[107px] flex flex-col gap-16'}>
-        <Hero></Hero>
-        <Features></Features>
-        <Overview></Overview>
-        <Testimonials></Testimonials>
-        <Cta></Cta>
-      </main>
+    <main className={"flex flex-col gap-16 pt-[107px]"}>
+      <Hero></Hero>
+      <Features></Features>
+      <Overview></Overview>
+      <Testimonials></Testimonials>
+      <Cta></Cta>
+    </main>
   );
 }

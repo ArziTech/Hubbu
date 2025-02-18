@@ -4,14 +4,15 @@ import Category from "@/app/(public)/templates/_components/category";
 import { getAllTemplateCategory } from "@/actions/template-category";
 
 const Sidebar = async () => {
-  const allCategories =  await getAllTemplateCategory();
+  const allCategories = await getAllTemplateCategory();
 
-  if(!allCategories.data)
-    return null;
+  if (!allCategories.data) return null;
 
   return (
     <div>
-      <span className={"text-2xl font-semibold text-nowrap mb-3"}>Browse Template</span>
+      <span className={"mb-3 text-nowrap text-2xl font-semibold"}>
+        Browse Template
+      </span>
       <Category categories={allCategories.data} />
 
       {/* TODO: Implement Later*/}

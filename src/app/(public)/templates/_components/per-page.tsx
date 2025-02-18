@@ -1,13 +1,20 @@
-'use client'
+"use client";
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { useQueryState } from "nuqs";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 
 const Search = () => {
-  const [perPage, setPerPage] = useQueryState('perPage', { defaultValue: "10" })
+  const [perPage, setPerPage] = useQueryState("perPage", {
+    defaultValue: "10",
+  });
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

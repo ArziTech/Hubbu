@@ -33,7 +33,7 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     --text: 275 43% 5%;
-    --gradient: linear-gradient(to top left, #A18CD1, #FBC2EB);
+    --gradient: linear-gradient(to top left, #a18cd1, #fbc2eb);
     --background: 300, 14%, 98%;
     --foreground: 280, 33%, 6%;
     --card: 285, 44%, 95%;
@@ -43,7 +43,6 @@ body {
     --secondary: 274, 22%, 21%;
     --accent: 274, 95%, 36%;
     --border: 283, 38%, 82%;
-
   }
   .dark {
     --chart-1: 220 70% 50%;
@@ -61,7 +60,7 @@ body {
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    --gradient: to top left, #A18CD1, #FBC2EB;
+    --gradient: to top left, #a18cd1, #fbc2eb;
 
     --muted: 274 21.5% 20.7%;
     --muted-foreground: 274 4.3% 56.9%;
@@ -83,7 +82,6 @@ body {
     --accent: 274, 95%, 36%;
     --accent-foreground: 0, 0%, 100%;
     --border: 270, 7%, 29%;
-
   }
 }
 
@@ -97,5 +95,5 @@ body {
 }
 
 .bg-primary-gradient {
-  background: linear-gradient(to top left, #FBC2EB, #A18CD1);
+  background: linear-gradient(to top left, #fbc2eb, #a18cd1);
 }

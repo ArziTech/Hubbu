@@ -1,5 +1,5 @@
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
-import {  Loader } from "lucide-react";
+import { Loader } from "lucide-react";
 import { getTemplates, GetTemplateParams } from "@/actions/template";
 import Search from "@/app/(public)/templates/_components/search";
 import { useQuery } from "react-query";
@@ -12,12 +12,10 @@ import Sidebar from "@/app/(public)/templates/_components/sidebar";
 import TemplateList from "@/app/(public)/templates/_components/template-list";
 
 const Page = () => {
-
-
   return (
     <section className={"w-full"}>
       <MaxwidthWrapper>
-        <div className={"flex pt-32 gap-16"}>
+        <div className={"flex gap-16 pt-32"}>
           <Sidebar />
           <TemplateList />
         </div>

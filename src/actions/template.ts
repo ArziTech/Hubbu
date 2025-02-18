@@ -1,8 +1,7 @@
-'use server'
+"use server";
 import { ActionResponse } from "@/lib/types";
 import { Prisma, TemplateStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-
 
 export interface GetTemplateReturn {
   templates: {
@@ -27,66 +26,65 @@ export interface GetTemplateParams {
   rating?: string;
 }
 
-export async function getTemplates(
-  {
-   search,
-   perPage,
-   page,
-   category,
-   sortBy,
-   rating,
- }: GetTemplateParams): Promise<ActionResponse<GetTemplateReturn>> {
+export async function getTemplates({
+  search,
+  perPage,
+  page,
+  category,
+  sortBy,
+  rating,
+}: GetTemplateParams): Promise<ActionResponse<GetTemplateReturn>> {
   try {
     const pageSize = perPage ? parseInt(perPage, 10) : 10;
     const currentPage = page ? parseInt(page, 10) : 1;
     const skip = (currentPage - 1) * pageSize; // Menghitung offset untuk pagination
 
-    const templateCategory=  await prisma.templateCategory.findFirst({
+    const templateCategory = await prisma.templateCategory.findFirst({
       where: {
         title: {
           contains: category,
-          mode:'insensitive'
-        }
-      }
-    })
-    const  categoryId = templateCategory?.id;
+          mode: "insensitive",
+        },
+      },
+    });
+    const categoryId = templateCategory?.id;
 
     // return error if the category given isn't found
     if (category && !categoryId)
       return { status: "ERROR", error: "Invalid Category" };
 
-    const templates: GetTemplateReturn['templates'] = await prisma.template.findMany({
-      take: pageSize,
-      skip: skip,
-      where: {
-        status: TemplateStatus.ON_SALE,
-        title: search ? { contains: search, mode: 'insensitive' } : undefined,
-        templateCategoryId: categoryId && category ? categoryId : undefined,
-        averageRating: rating ? { gte: parseFloat(rating) } : undefined,
-      },
-      orderBy: sortBy
-        ? { [sortBy]: sortBy === 'title' ? 'asc' : 'desc' } // Adjust sorting rules
-        : undefined,
-      select: {
-        id: true,
-        title: true,
-        price: true,
-        averageRating: true,
-        description: true,
-        templateCategory: {
-          select: {
-            title: true,
+    const templates: GetTemplateReturn["templates"] =
+      await prisma.template.findMany({
+        take: pageSize,
+        skip: skip,
+        where: {
+          status: TemplateStatus.ON_SALE,
+          title: search ? { contains: search, mode: "insensitive" } : undefined,
+          templateCategoryId: categoryId && category ? categoryId : undefined,
+          averageRating: rating ? { gte: parseFloat(rating) } : undefined,
+        },
+        orderBy: sortBy
+          ? { [sortBy]: sortBy === "title" ? "asc" : "desc" } // Adjust sorting rules
+          : undefined,
+        select: {
+          id: true,
+          title: true,
+          price: true,
+          averageRating: true,
+          description: true,
+          templateCategory: {
+            select: {
+              title: true,
+            },
           },
         },
-      },
-    });
+      });
 
-    if (!templates)
-      return { status: "ERROR", error: "Template doesn't exist" };
+    if (!templates) return { status: "ERROR", error: "Template doesn't exist" };
 
     const totalTemplate = await prisma.template.count({
       where: {
-        title: search ? { contains: search, mode: 'insensitive' } : undefined,
+        title: search ? { contains: search, mode: "insensitive" } : undefined,
         status: TemplateStatus.ON_SALE,
         templateCategoryId: categoryId && category ? categoryId : undefined,
         averageRating: rating ? { gte: parseFloat(rating) } : undefined,
@@ -104,12 +102,15 @@ export async function getTemplates(
         currentPage,
       },
     };
-  } catch (error: unknown){
+  } catch (error: unknown) {
     if (error instanceof Prisma.PrismaClientKnownRequestError)
       if (error.code === "P2002")
         return { status: "ERROR", error: "Unique constraint failed" };
-    else if (error instanceof Prisma.PrismaClientValidationError)
-      return { status: "ERROR", error: "Invalid query or schema validation failed" };
+      else if (error instanceof Prisma.PrismaClientValidationError)
+        return {
+          status: "ERROR",
+          error: "Invalid query or schema validation failed",
+        };
     return { status: "ERROR", error: "Something went wrong" };
   }
 }

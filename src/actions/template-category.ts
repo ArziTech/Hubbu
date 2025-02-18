@@ -1,6 +1,6 @@
-'use server'
+"use server";
 import { ActionResponse } from "@/lib/types";
-import {  TemplateCategory } from "@prisma/client";
+import { TemplateCategory } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 export async function getAllTemplateCategory(): Promise<
@@ -20,7 +20,5 @@ export async function getAllTemplateCategory(): Promise<
   } catch (error) {
     console.log(error);
     return { status: "ERROR", error: "Something went wrong" };
-
   }
-
 }

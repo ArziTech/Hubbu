@@ -1,32 +1,30 @@
-import React from 'react'
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
-import hubbuHorizontal from  '../../../public/logo/hubbu-horizontal.svg'
+import hubbuHorizontal from "../../../public/logo/hubbu-horizontal.svg";
 import Link from "next/link";
-import {Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   return (
-      <nav className={'fixed z-10 left-0 right-0 bg-background border-b' +
-        ' border-border'}>
-        <MaxwidthWrapper>
-          <div className={'w-full flex justify-between items-center'}>
-            <Image
-                src={hubbuHorizontal}
-                alt={'hubbu'}
-                width={220}
-                height={90}
-            />
-            <div className={'flex gap-4 items-center'}>
-              <Link href={'/'}>Home</Link>
-              <Link href={'/templates'}>Templates</Link>
-              <Link href={'/contact'}>Contact</Link>
-              <Button>Login</Button>
-              <Button>Register</Button>
-            </div>
+    <nav
+      className={
+        "fixed left-0 right-0 z-10 border-b bg-background" + " border-border"
+      }
+    >
+      <MaxwidthWrapper>
+        <div className={"flex w-full items-center justify-between"}>
+          <Image src={hubbuHorizontal} alt={"hubbu"} width={220} height={90} />
+          <div className={"flex items-center gap-4"}>
+            <Link href={"/"}>Home</Link>
+            <Link href={"/templates"}>Templates</Link>
+            <Link href={"/contact"}>Contact</Link>
+            <Button>Login</Button>
+            <Button>Register</Button>
           </div>
-        </MaxwidthWrapper>
-      </nav>
-  )
-}
-export default Navbar
+        </div>
+      </MaxwidthWrapper>
+    </nav>
+  );
+};
+export default Navbar;

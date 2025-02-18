@@ -5,18 +5,23 @@ interface SelectProps {
   name: string;
   params: string | null;
   value: string | null;
-  setParams: (value:string|null) => void;
+  setParams: (value: string | null) => void;
 }
 
-const Select = ({name,params, value, setParams}: SelectProps) => {
-  const formattedValue = value ? value : null ;
+const Select = ({ name, params, value, setParams }: SelectProps) => {
+  const formattedValue = value ? value : null;
   return (
     // need to check if it is active
     // if its acive highlight it
     <p
-      className={clsx(`ms-2 ps-1 cursor-pointer rounded-md py-1`, params === formattedValue ? "bg-gray-300 hover" : "hover:bg-gray-200")}
-      onClick={()=>setParams(formattedValue)}
-    >{name}</p>
+      className={clsx(
+        `ms-2 cursor-pointer rounded-md py-1 ps-1`,
+        params === formattedValue ? "hover bg-gray-300" : "hover:bg-gray-200",
+      )}
+      onClick={() => setParams(formattedValue)}
+    >
+      {name}
+    </p>
   );
 };
 export default Select;

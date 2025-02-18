@@ -1,16 +1,31 @@
 import React from "react";
-import Image from 'next/image'
+import Image from "next/image";
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
 import { Button } from "@/components/ui/button";
-import cta from '@/public/images/cta.png'
+import cta from "@/public/images/cta.png";
 
 const Cta = () => {
   return (
-    <div className={'w-full bg-primary-gradient'}>
-      <MaxwidthWrapper className={'flex flex-col justify-center items-center'}>
-        <h2 className={'font-bold text-2xl tablet:text-4xl desktop:text-[42px] text-white text-center mt-12 tablet:mt-20 desktop:mt-28'}>Tunggu apa lagi? <br/> Ayo Buat Undangan Pernikahanmu Sekarang!</h2>
-        <Button variant={'secondary'} className={'mt-6 text-white mx-auto relative'}>Explore Templates</Button>
-        <Image src={cta} alt={'Ayo buat undanganmu segera'} className={'mt-28'} />
+    <div className={"bg-primary-gradient w-full"}>
+      <MaxwidthWrapper className={"flex flex-col items-center justify-center"}>
+        <h2
+          className={
+            "mt-12 text-center text-2xl font-bold text-white tablet:mt-20 tablet:text-4xl desktop:mt-28 desktop:text-[42px]"
+          }
+        >
+          Tunggu apa lagi? <br /> Ayo Buat Undangan Pernikahanmu Sekarang!
+        </h2>
+        <Button
+          variant={"secondary"}
+          className={"relative mx-auto mt-6 text-white"}
+        >
+          Explore Templates
+        </Button>
+        <Image
+          src={cta}
+          alt={"Ayo buat undanganmu segera"}
+          className={"mt-28"}
+        />
       </MaxwidthWrapper>
     </div>
   );

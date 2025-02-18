@@ -6,11 +6,12 @@ import { LibraryBig, Star } from "lucide-react";
 import Select from "@/app/(public)/templates/_components/select";
 
 const Rating = () => {
-  const [rating, setRating] = useQueryState('rating')
+  const [rating, setRating] = useQueryState("rating");
   return (
     <div>
-      <div className={'flex items-center gap-2 my-2'}>
-        <Star className={'inline size-6'} /><span className={'font-medium'}>Sort</span>
+      <div className={"my-2 flex items-center gap-2"}>
+        <Star className={"inline size-6"} />
+        <span className={"font-medium"}>Sort</span>
       </div>
 
       <Select
