@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { Images } from "lucide-react";
-import { Template } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import {
   Card,
@@ -20,6 +19,7 @@ interface TemplateCardProps {
   rating: number;
   description: string;
   category: string;
+  // Todo: image
 }
 
 const TemplateCard = ({

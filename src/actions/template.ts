@@ -1,6 +1,6 @@
 "use server";
 import { ActionResponse } from "@/lib/types";
-import { Prisma, TemplateStatus } from "@prisma/client";
+import { Prisma, Template, TemplateStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 export interface GetTemplateReturn {
@@ -11,6 +11,7 @@ export interface GetTemplateReturn {
     averageRating: number;
     description: string;
     templateCategory: { title: string };
+    // Todo: add image
   }[];
   totalTemplate: number;
   totalPages: number;
@@ -100,6 +101,64 @@ export async function getTemplates({
         totalTemplate,
         totalPages,
         currentPage,
+      },
+    };
+  } catch (error: unknown) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError)
+      if (error.code === "P2002")
+        return { status: "ERROR", error: "Unique constraint failed" };
+      else if (error instanceof Prisma.PrismaClientValidationError)
+        return {
+          status: "ERROR",
+          error: "Invalid query or schema validation failed",
+        };
+    return { status: "ERROR", error: "Something went wrong" };
+  }
+}
+
+export interface GetTemplateByIdReturn {
+  template: {
+    id: string;
+    title: string;
+    price: number;
+    averageRating: number;
+    description: string;
+    templateCategory: { title: string };
+    purchasedTime: number;
+    // Todo: add images
+    // Todo: add template image preview
+  };
+}
+// add total review to the return
+export async function GetTemplateById(
+  templateId: string,
+): Promise<ActionResponse<GetTemplateByIdReturn>> {
+  try {
+    const template = await prisma.template.findUnique({
+      where: { id: templateId },
+      select: {
+        id: true,
+        title: true,
+        price: true,
+        averageRating: true,
+        description: true,
+        purchasedTime: true,
+        templateCategory: {
+          select: {
+            title: true,
+          },
+        },
+      },
+    });
+
+    if (!template) return { status: "ERROR", error: "Template doesn't exist" };
+
+    return {
+      status: "SUCCESS",
+      success: "Success fetching the article",
+      data: {
+        template,
+        // Todo: add total review here
       },
     };
   } catch (error: unknown) {
