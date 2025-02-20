@@ -19,8 +19,12 @@ const Navbar = () => {
             <Link href={"/"}>Home</Link>
             <Link href={"/templates"}>Templates</Link>
             <Link href={"/contact"}>Contact</Link>
-            <Button>Login</Button>
-            <Button>Register</Button>
+            <Button asChild>
+              <Link href={"/login"}>Login</Link>
+            </Button>
+            <Button asChild>
+              <Link href={"/register"}>Register</Link>
+            </Button>
           </div>
         </div>
       </MaxwidthWrapper>

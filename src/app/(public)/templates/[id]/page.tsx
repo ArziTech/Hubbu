@@ -7,14 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Description from "./_components/description";
 import Recommendation from "@/app/(public)/templates/[id]/_components/recommendation";
+import notFound from "@/app/not-found";
 
 async function Page({ params }: { params: Promise<{ id: string }> }) {
   const id = (await params).id;
   const result = await GetTemplateById(id);
 
-  if (result.status === "ERROR" || !result.data)
-    // TODO: Handle this
-    return null;
+  if (result.status === "ERROR" || !result.data) return notFound();
 
   const { template } = result.data;
 

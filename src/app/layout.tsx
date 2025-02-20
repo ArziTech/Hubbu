@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} ${novaSquare.variable} font-poppins antialiased`}
+        className={`${poppins.variable} ${novaSquare.variable} min-h-full font-poppins antialiased`}
       >
         <ThemeProvider
           attribute="class"
