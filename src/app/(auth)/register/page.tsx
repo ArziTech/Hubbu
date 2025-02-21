@@ -3,7 +3,7 @@ import { LoginForm } from "@/components/login-form";
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
 import hubbu from "@/public/logo/hubbu-horizontal-white.svg";
 import Image from "next/image";
-import { RegisterForm } from "@/components/register-form";
+import { RegisterForm } from "@/app/(auth)/register/_components/register-form";
 
 const Page = () => {
   return (
@@ -19,9 +19,7 @@ const Page = () => {
           </div>
         </div>
         {/*<div className={'w-1/2'}></div>*/}
-        <RegisterForm
-          className={"mx-auto h-full w-full max-w-[500px] desktop:w-1/2"}
-        ></RegisterForm>
+        <RegisterForm />
       </MaxwidthWrapper>
     </div>
   );

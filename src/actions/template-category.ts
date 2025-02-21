@@ -17,8 +17,7 @@ export async function getAllTemplateCategory(): Promise<
       success: "Success fetching the article",
       data: allCategories,
     };
-  } catch (error) {
-    console.log(error);
+  } catch {
     return { status: "ERROR", error: "Something went wrong" };
   }
 }

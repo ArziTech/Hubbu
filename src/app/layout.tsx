@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import ReactQuery from "@/components/providers/react-query";
+import { Toaster } from "@/components/ui/toaster";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -39,7 +40,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NuqsAdapter>
-            <ReactQuery>{children}</ReactQuery>
+            <ReactQuery>
+              {children}
+              <Toaster />
+            </ReactQuery>
           </NuqsAdapter>
         </ThemeProvider>
       </body>
