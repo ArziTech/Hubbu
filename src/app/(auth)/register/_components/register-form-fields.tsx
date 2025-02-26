@@ -17,7 +17,7 @@ interface RegisterFormFieldsProps {
 export default function RegisterFormFields({ form }: RegisterFormFieldsProps) {
   return (
     <>
-      {["name", "email", "password", "confirmPassword"].map((fieldName) => (
+      {["name", "email", "password", "confirmpassword"].map((fieldName) => (
         <div key={fieldName} className="grid gap-2">
           <FormField
             control={form.control}

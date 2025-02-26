@@ -28,8 +28,6 @@ export function checkDevelopmentRoute(route: string): boolean {
  */
 export const publicRoutes: string[] = [
   "/",
-  "/tahfidz-camp",
-  "/new-verification",
   "/reset-password",
   "/unauthorized",
   "/not-found",
@@ -42,9 +40,11 @@ export const publicRoutes: string[] = [
  * @type {string[]}
  */
 export const publicRoutesPrefix: string[] = [
-  "/programs",
-  "/services",
-  "/article",
+  "/templates",
+  "/preview",
+  "/transaction",
+  // TODO: change this to protected
+  "editor",
 ];
 
 export function checkPublicRoute(route: string): boolean {
@@ -64,8 +64,8 @@ export function checkPublicRoute(route: string): boolean {
  * @type {string[]}
  */
 export const authRoutes: string[] = [
-  "/signIn",
-  "/signUp",
+  "/login",
+  "/register",
   // TODO : check. Is this should be here? or should be in public rotues
   "/auth-error",
   "/new-password",

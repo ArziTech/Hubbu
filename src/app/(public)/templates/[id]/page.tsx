@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import Description from "./_components/description";
 import Recommendation from "@/app/(public)/templates/[id]/_components/recommendation";
 import notFound from "@/app/not-found";
+import Link from "next/link";
 
 async function Page({ params }: { params: Promise<{ id: string }> }) {
   const id = (await params).id;
@@ -58,7 +59,9 @@ async function Page({ params }: { params: Promise<{ id: string }> }) {
             <div className={"flex w-full gap-4"}>
               {/* TODO */}
               <Button className={"w-full"}>Use this template</Button>
-              <Button className={"w-full"}>Preview</Button>
+              <Button asChild className={"w-full"}>
+                <Link href={`/preview/${template.id}`}>Preview</Link>
+              </Button>
             </div>
           </div>
         </MaxwidthWrapper>

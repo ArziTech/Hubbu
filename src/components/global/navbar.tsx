@@ -9,6 +9,7 @@ import { Avatar } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -39,6 +40,17 @@ const Navbar = async () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href={"/dashboard/"}
+                      className={cn(
+                        buttonVariants({ variant: "outline" }),
+                        "w-full",
+                      )}
+                    >
+                      Dashboard
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuRadioItem
                     value={"login"}
                     className={cn(

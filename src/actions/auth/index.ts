@@ -3,7 +3,7 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import z from "zod";
 import { loginSchema, registerSchema } from "@/lib/schemas/auth";
 import { createUser, getUserByEmail } from "@/actions/user";
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
@@ -127,4 +127,8 @@ export const registerAction = async (
 
 export async function googleLogin() {
   await signIn("google", { redirectTo: "/" });
+}
+
+export async function SignOutAction() {
+  await signOut();
 }

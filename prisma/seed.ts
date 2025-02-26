@@ -2,7 +2,7 @@ import { TemplateStatus, PrismaClient, Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const hashedPassword = "passowrd";
+const hashedPassword = "password";
 
 const templates: Prisma.TemplateCreateInput[] = [
   {
