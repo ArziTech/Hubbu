@@ -1,6 +1,6 @@
 "use server";
 import { ActionResponse } from "@/lib/types";
-import { Prisma, Template, TemplateStatus } from "@prisma/client";
+import { Prisma, TemplateStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 export interface GetTemplateReturn {

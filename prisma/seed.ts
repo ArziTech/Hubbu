@@ -2,7 +2,313 @@ import { TemplateStatus, PrismaClient, Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const roles: Prisma.RoleCreateInput[] = [
+  {
+    id: "1",
+    title: "ADMIN",
+  },
+  {
+    id: "2",
+    title: "CUSTOMER",
+  },
+];
+
 const hashedPassword = "password";
+
+const users: Prisma.UserCreateInput[] = [
+  {
+    id: "1",
+    name: "John Doe",
+    username: "johndoe",
+    email: "johndoe@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "2",
+    name: "Jane Doe",
+    username: "janedoe",
+    email: "janedoe@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "3",
+    name: "Vintage Guru",
+    username: "vintageguru",
+    email: "vintageguru@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "4",
+    name: "Job Seeker Pro",
+    username: "jobseekerpro",
+    email: "jobseekerpro@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "5",
+    name: "Designer Pro",
+    username: "designerpro",
+    email: "designerpro@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "6",
+    name: "Alice Johnson",
+    username: "alicejohnson",
+    email: "alice@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "7",
+    name: "Mark Smith",
+    username: "marksmith",
+    email: "mark@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "8",
+    name: "Sophia Lee",
+    username: "sophialee",
+    email: "sophia@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "9",
+    name: "Emma Brown",
+    username: "emmabrown",
+    email: "emma@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "10",
+    name: "David Wilson",
+    username: "davidwilson",
+    email: "david@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "11",
+    name: "Mike Taylor",
+    username: "miketaylor",
+    email: "mike@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "12",
+    name: "Chris Johnson",
+    username: "chrisjohnson",
+    email: "chris@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "13",
+    name: "Lucas Martin",
+    username: "lucasmartin",
+    email: "lucas@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "14",
+    name: "Photo Expert",
+    username: "photoexpert",
+    email: "photoexpert@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "15",
+    name: "Store Owner",
+    username: "storeowner",
+    email: "storeowner@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "16",
+    name: "Agency Owner",
+    username: "agencyowner",
+    email: "agencyowner@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+  {
+    id: "17",
+    name: "Event Planner",
+    username: "eventplanner",
+    email: "eventplanner@example.com",
+    password: hashedPassword,
+    roles: { connect: { id: "1" } },
+  },
+];
+
+const coupons: Prisma.CouponCreateInput[] = [
+  {
+    id: "1",
+    code: "WELCOME10",
+    discount: 10,
+    timeUsed: 5,
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "2",
+    code: "SUMMER20",
+    discount: 20,
+    timeUsed: 3,
+    expiredAt: new Date(new Date().setMonth(new Date().getMonth() + 6)), // Kedaluwarsa 6 bulan dari sekarang
+  },
+  {
+    id: "3",
+    code: "FREESHIP",
+    discount: 0,
+    timeUsed: 10,
+    expiredAt: new Date(new Date().setMonth(new Date().getMonth() + 3)), // Kedaluwarsa 3 bulan dari sekarang
+  },
+  {
+    id: "4",
+    code: "BLACKFRIDAY50",
+    discount: 50,
+    timeUsed: 2,
+    expiredAt: new Date(new Date().setDate(new Date().getDate() + 30)), // Kedaluwarsa 30 hari dari sekarang
+  },
+  {
+    id: "5",
+    code: "NEWYEAR25",
+    discount: 25,
+    timeUsed: 7,
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "6",
+    code: "SPRING15",
+    discount: 15,
+    timeUsed: 1,
+    expiredAt: new Date(new Date().setMonth(new Date().getMonth() + 2)), // Kedaluwarsa 2 bulan dari sekarang
+  },
+  {
+    id: "7",
+    code: "HOLIDAY30",
+    discount: 30,
+    timeUsed: 4,
+    expiredAt: new Date(new Date().setMonth(new Date().getMonth() + 1)), // Kedaluwarsa 1 bulan dari sekarang
+  },
+  {
+    id: "8",
+    code: "LOYALTY5",
+    discount: 5,
+    timeUsed: 8,
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "9",
+    code: "FIRSTORDER",
+    discount: 10,
+    timeUsed: 12,
+    expiredAt: new Date(new Date().setMonth(new Date().getMonth() + 3)), // Kedaluwarsa 3 bulan dari sekarang
+  },
+  {
+    id: "10",
+    code: "MEMBER20",
+    discount: 20,
+    timeUsed: 6,
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+];
+
+const templateCategories: Prisma.TemplateCategoryCreateInput[] = [
+  {
+    id: "1", // Kategori 1
+    title: "Wedding",
+  },
+  {
+    id: "2", // Kategori 2
+    title: "Business",
+  },
+  {
+    id: "3", // Kategori 3
+    title: "Portfolio",
+  },
+  {
+    id: "4", // Kategori 4
+    title: "Education",
+  },
+  {
+    id: "5", // Kategori 5
+    title: "Photography",
+  },
+  {
+    id: "6", // Kategori 6
+    title: "Travel",
+  },
+  {
+    id: "7", // Kategori 7
+    title: "Food & Drink",
+  },
+  {
+    id: "8", // Kategori 8
+    title: "Events",
+  },
+  {
+    id: "9", // Kategori 9
+    title: "E-commerce",
+  },
+  {
+    id: "10", // Kategori 10
+    title: "Creative",
+  },
+  {
+    id: "11", // Kategori 11
+    title: "Health & Fitness",
+  },
+  {
+    id: "12", // Kategori 12
+    title: "Technology",
+  },
+  {
+    id: "13", // Kategori 13
+    title: "Fashion",
+  },
+  {
+    id: "14", // Kategori 14
+    title: "Art & Design",
+  },
+  {
+    id: "15", // Kategori 15
+    title: "Music",
+  },
+  {
+    id: "16", // Kategori 16
+    title: "Real Estate",
+  },
+  {
+    id: "17", // Kategori 17
+    title: "Non-Profit",
+  },
+  {
+    id: "18", // Kategori 18
+    title: "Personal Blog",
+  },
+  {
+    id: "19", // Kategori 19
+    title: "Gaming",
+  },
+  {
+    id: "20", // Kategori 20
+    title: "Automotive",
+  },
+];
 
 const templates: Prisma.TemplateCreateInput[] = [
   {
@@ -16,21 +322,10 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 10,
     averageRating: 5,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Modern" },
-        create: { title: "Modern" },
-      },
+      connect: { id: "1" }, // Menghubungkan ke templateCategory dengan ID "1"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "johndoe@example.com" },
-        create: {
-          name: "John Doe",
-          username: "johndoe",
-          email: "johndoe@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "1" }, // Menghubungkan ke user dengan ID "1"
     },
   },
   {
@@ -44,21 +339,10 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 25,
     averageRating: 4.8,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Corporate" },
-        create: { title: "Corporate" },
-      },
+      connect: { id: "2" }, // Menghubungkan ke templateCategory dengan ID "2"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "janedoe@example.com" },
-        create: {
-          name: "Jane Doe",
-          username: "janedoe",
-          email: "janedoe@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "2" }, // Menghubungkan ke user dengan ID "2"
     },
   },
   {
@@ -72,21 +356,10 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 15,
     averageRating: 4.6,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Vintage" },
-        create: { title: "Vintage" },
-      },
+      connect: { id: "3" }, // Menghubungkan ke templateCategory dengan ID "3"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "vintageguru@example.com" },
-        create: {
-          name: "Vintage Guru",
-          username: "vintageguru",
-          email: "vintageguru@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "3" }, // Menghubungkan ke user dengan ID "3"
     },
   },
   {
@@ -100,21 +373,10 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 40,
     averageRating: 4.9,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Professional" },
-        create: { title: "Professional" },
-      },
+      connect: { id: "4" }, // Menghubungkan ke templateCategory dengan ID "4"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "jobseekerpro@example.com" },
-        create: {
-          name: "Job Seeker Pro",
-          username: "jobseekerpro",
-          email: "jobseekerpro@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "4" }, // Menghubungkan ke user dengan ID "4"
     },
   },
   {
@@ -128,133 +390,10 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 8,
     averageRating: 4.7,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Creative" },
-        create: { title: "Creative" },
-      },
+      connect: { id: "5" }, // Menghubungkan ke templateCategory dengan ID "5"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "designerpro@example.com" },
-        create: {
-          name: "Designer Pro",
-          username: "designerpro",
-          email: "designerpro@example.com",
-          password: hashedPassword,
-        },
-      },
-    },
-  },
-  {
-    id: "12",
-    title: "Minimalist Birthday Invitation",
-    price: 150000,
-    description: "A sleek, minimalist templates for birthday parties.",
-    features: "Minimal design, Custom colors",
-    content: "<h1>Join the Celebration</h1>",
-    status: TemplateStatus.ON_SALE,
-    purchasedTime: 5,
-    averageRating: 4,
-    templateCategory: {
-      connectOrCreate: {
-        where: { title: "Minimalist" },
-        create: { title: "Minimalist" },
-      },
-    },
-    createdByUser: {
-      connectOrCreate: {
-        where: { email: "alice@example.com" },
-        create: {
-          name: "Alice Johnson",
-          username: "alicejohnson",
-          email: "alice@example.com",
-          password: hashedPassword,
-        },
-      },
-    },
-  },
-  {
-    id: "13",
-    title: "Classic Business Brochure",
-    price: 300000,
-    description: "A professional brochure templates for businesses.",
-    features: "Corporate design, Print-ready, Easy customization",
-    content: "<h1>Your Business Solution</h1>",
-    status: TemplateStatus.ON_SALE,
-    purchasedTime: 15,
-    averageRating: 5,
-    templateCategory: {
-      connectOrCreate: {
-        where: { title: "Business" },
-        create: { title: "Business" },
-      },
-    },
-    createdByUser: {
-      connectOrCreate: {
-        where: { email: "mark@example.com" },
-        create: {
-          name: "Mark Smith",
-          username: "marksmith",
-          email: "mark@example.com",
-          password: hashedPassword,
-        },
-      },
-    },
-  },
-  {
-    id: "14",
-    title: "Luxury Event Invitation",
-    price: 500000,
-    description: "A luxurious design for high-end events.",
-    features: "Gold accents, Custom fonts",
-    content: "<h1>You Are Invited</h1>",
-    status: TemplateStatus.ON_SALE,
-    purchasedTime: 20,
-    averageRating: 5,
-    templateCategory: {
-      connectOrCreate: {
-        where: { title: "Luxury" },
-        create: { title: "Luxury" },
-      },
-    },
-    createdByUser: {
-      connectOrCreate: {
-        where: { email: "sophia@example.com" },
-        create: {
-          name: "Sophia Lee",
-          username: "sophialee",
-          email: "sophia@example.com",
-          password: hashedPassword,
-        },
-      },
-    },
-  },
-  {
-    id: "15",
-    title: "Modern Portfolio Template",
-    price: 250000,
-    description: "Perfect for showcasing creative work.",
-    features: "Responsive layout, Portfolio grid",
-    content: "<h1>Your Portfolio</h1>",
-    status: TemplateStatus.ON_SALE,
-    purchasedTime: 8,
-    averageRating: 4,
-    templateCategory: {
-      connectOrCreate: {
-        where: { title: "Portfolio" },
-        create: { title: "Portfolio" },
-      },
-    },
-    createdByUser: {
-      connectOrCreate: {
-        where: { email: "emma@example.com" },
-        create: {
-          name: "Emma Brown",
-          username: "emmabrown",
-          email: "emma@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "5" }, // Menghubungkan ke user dengan ID "5"
     },
   },
   {
@@ -268,21 +407,10 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 12,
     averageRating: 4,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Travel" },
-        create: { title: "Travel" },
-      },
+      connect: { id: "10" }, // Menghubungkan ke templateCategory dengan ID "10"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "david@example.com" },
-        create: {
-          name: "David Wilson",
-          username: "davidwilson",
-          email: "david@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "10" }, // Menghubungkan ke user dengan ID "10"
     },
   },
   {
@@ -296,21 +424,10 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 9,
     averageRating: 5,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Photography" },
-        create: { title: "Photography" },
-      },
+      connect: { id: "11" }, // Menghubungkan ke templateCategory dengan ID "11"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "mike@example.com" },
-        create: {
-          name: "Mike Taylor",
-          username: "miketaylor",
-          email: "mike@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "11" }, // Menghubungkan ke user dengan ID "11"
     },
   },
   {
@@ -324,21 +441,10 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 18,
     averageRating: 4,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Food & Drink" },
-        create: { title: "Food & Drink" },
-      },
+      connect: { id: "12" }, // Menghubungkan ke templateCategory dengan ID "12"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "chris@example.com" },
-        create: {
-          name: "Chris Johnson",
-          username: "chrisjohnson",
-          email: "chris@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "12" }, // Menghubungkan ke user dengan ID "12"
     },
   },
   {
@@ -352,25 +458,83 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 25,
     averageRating: 5,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Education" },
-        create: { title: "Education" },
-      },
+      connect: { id: "13" }, // Menghubungkan ke templateCategory dengan ID "13"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "lucas@example.com" },
-        create: {
-          name: "Lucas Martin",
-          username: "lucasmartin",
-          email: "lucas@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "13" }, // Menghubungkan ke user dengan ID "13"
     },
   },
   {
-    id: "20",
+    id: "10",
+    title: "Minimalist Birthday Invitation",
+    price: 150000,
+    description: "A sleek, minimalist templates for birthday parties.",
+    features: "Minimal design, Custom colors",
+    content: "<h1>Join the Celebration</h1>",
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 5,
+    averageRating: 4,
+    templateCategory: {
+      connect: { id: "6" }, // Menghubungkan ke templateCategory dengan ID "6"
+    },
+    createdByUser: {
+      connect: { id: "6" }, // Menghubungkan ke user dengan ID "6"
+    },
+  },
+  {
+    id: "11",
+    title: "Classic Business Brochure",
+    price: 300000,
+    description: "A professional brochure templates for businesses.",
+    features: "Corporate design, Print-ready, Easy customization",
+    content: "<h1>Your Business Solution</h1>",
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 15,
+    averageRating: 5,
+    templateCategory: {
+      connect: { id: "7" }, // Menghubungkan ke templateCategory dengan ID "7"
+    },
+    createdByUser: {
+      connect: { id: "7" }, // Menghubungkan ke user dengan ID "7"
+    },
+  },
+  {
+    id: "12",
+    title: "Luxury Event Invitation",
+    price: 500000,
+    description: "A luxurious design for high-end events.",
+    features: "Gold accents, Custom fonts",
+    content: "<h1>You Are Invited</h1>",
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 20,
+    averageRating: 5,
+    templateCategory: {
+      connect: { id: "8" }, // Menghubungkan ke templateCategory dengan ID "8"
+    },
+    createdByUser: {
+      connect: { id: "8" }, // Menghubungkan ke user dengan ID "8"
+    },
+  },
+  {
+    id: "13",
+    title: "Modern Portfolio Template",
+    price: 250000,
+    description: "Perfect for showcasing creative work.",
+    features: "Responsive layout, Portfolio grid",
+    content: "<h1>Your Portfolio</h1>",
+    status: TemplateStatus.ON_SALE,
+    purchasedTime: 8,
+    averageRating: 4,
+    templateCategory: {
+      connect: { id: "9" }, // Menghubungkan ke templateCategory dengan ID "9"
+    },
+    createdByUser: {
+      connect: { id: "9" }, // Menghubungkan ke user dengan ID "9"
+    },
+  },
+
+  {
+    id: "14",
     title: "Photography Portfolio",
     price: 250000,
     description: "A professional portfolio template for photographers.",
@@ -380,25 +544,14 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 12,
     averageRating: 4.9,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Photography" },
-        create: { title: "Photography" },
-      },
+      connect: { id: "14" }, // Menghubungkan ke templateCategory dengan ID "14"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "photoexpert@example.com" },
-        create: {
-          name: "Photo Expert",
-          username: "photoexpert",
-          email: "photoexpert@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "14" }, // Menghubungkan ke user dengan ID "14"
     },
   },
   {
-    id: "21",
+    id: "15",
     title: "E-commerce Landing Page",
     price: 400000,
     description: "A conversion-optimized landing page for online stores.",
@@ -408,25 +561,14 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 30,
     averageRating: 4.8,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "E-commerce" },
-        create: { title: "E-commerce" },
-      },
+      connect: { id: "15" }, // Menghubungkan ke templateCategory dengan ID "15"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "storeowner@example.com" },
-        create: {
-          name: "Store Owner",
-          username: "storeowner",
-          email: "storeowner@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "15" }, // Menghubungkan ke user dengan ID "15"
     },
   },
   {
-    id: "22",
+    id: "16",
     title: "Digital Agency Website",
     price: 350000,
     description: "A modern website template for digital agencies.",
@@ -436,25 +578,14 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 20,
     averageRating: 4.7,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Business" },
-        create: { title: "Business" },
-      },
+      connect: { id: "16" }, // Menghubungkan ke templateCategory dengan ID "16"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "agencyowner@example.com" },
-        create: {
-          name: "Agency Owner",
-          username: "agencyowner",
-          email: "agencyowner@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "16" }, // Menghubungkan ke user dengan ID "16"
     },
   },
   {
-    id: "23",
+    id: "17",
     title: "Tech Conference Flyer",
     price: 100000,
     description: "A stylish and informative flyer for tech events.",
@@ -464,27 +595,17 @@ const templates: Prisma.TemplateCreateInput[] = [
     purchasedTime: 18,
     averageRating: 4.6,
     templateCategory: {
-      connectOrCreate: {
-        where: { title: "Events" },
-        create: { title: "Events" },
-      },
+      connect: { id: "17" }, // Menghubungkan ke templateCategory dengan ID "17"
     },
     createdByUser: {
-      connectOrCreate: {
-        where: { email: "eventplanner@example.com" },
-        create: {
-          name: "Event Planner",
-          username: "eventplanner",
-          email: "eventplanner@example.com",
-          password: hashedPassword,
-        },
-      },
+      connect: { id: "17" }, // Menghubungkan ke user dengan ID "17"
     },
   },
 ];
 
 const testimonials: Prisma.TestimonialsCreateInput[] = [
   {
+    id: "1",
     name: "Alice",
     rating: 5,
     message: "Great templates, easy to use!",
@@ -496,6 +617,7 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
     },
   },
   {
+    id: "2",
     name: "Bob",
     rating: 4,
     message: "Good design, but the customization could be improved.",
@@ -507,6 +629,7 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
     },
   },
   {
+    id: "3",
     name: "Charlie",
     rating: 5,
     message: "The templates looks amazing and works perfectly!",
@@ -518,6 +641,7 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
     },
   },
   {
+    id: "4",
     name: "David",
     rating: 4,
     message: "Elegant and modern design. Highly recommend it!",
@@ -529,6 +653,7 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
     },
   },
   {
+    id: "5",
     name: "Emma",
     rating: 5,
     message: "Best templates I have ever used for my portfolio!",
@@ -540,6 +665,7 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
     },
   },
   {
+    id: "6",
     name: "Frank",
     rating: 4,
     message: "Very easy to set up, but needs more customization options.",
@@ -551,6 +677,7 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
     },
   },
   {
+    id: "7",
     name: "Grace",
     rating: 5,
     message: "This templates helped me create a stunning travel blog!",
@@ -562,6 +689,7 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
     },
   },
   {
+    id: "8",
     name: "Henry",
     rating: 4,
     message: "Beautiful templates, but had a few minor issues at first.",
@@ -573,6 +701,7 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
     },
   },
   {
+    id: "9",
     name: "Isabella",
     rating: 5,
     message: "Perfect for showcasing my photography projects!",
@@ -584,6 +713,7 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
     },
   },
   {
+    id: "10",
     name: "Jack",
     rating: 5,
     message: "Great for promoting my online course. Thank you!",
@@ -596,13 +726,526 @@ const testimonials: Prisma.TestimonialsCreateInput[] = [
   },
 ];
 
+const transactions: Prisma.TransactionCreateInput[] = [
+  {
+    customer: { connect: { id: "1" } },
+    amount: 100000,
+    coupon: { connect: { id: "1" } },
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "1" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "PENDING",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "1" } },
+  },
+  {
+    customer: { connect: { id: "2" } },
+    amount: 100000,
+    coupon: undefined,
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "2" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "SUCCESS",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "2" } },
+  },
+  {
+    customer: { connect: { id: "3" } },
+    amount: 100000,
+    coupon: { connect: { id: "3" } },
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "3" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "SUCCESS",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "3" } },
+  },
+  {
+    customer: { connect: { id: "4" } },
+    amount: 100000,
+    coupon: undefined,
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "4" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "PENDING",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "4" } },
+  },
+  {
+    customer: { connect: { id: "5" } },
+    amount: 100000,
+    coupon: { connect: { id: "5" } },
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "5" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "SUCCESS",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "5" } },
+  },
+  {
+    customer: { connect: { id: "6" } },
+    amount: 100000,
+    coupon: undefined,
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "6" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "SUCCESS",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "6" } },
+  },
+  {
+    customer: { connect: { id: "7" } },
+    amount: 100000,
+    coupon: { connect: { id: "1" } },
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "7" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "PENDING",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "7" } },
+  },
+  {
+    customer: { connect: { id: "8" } },
+    amount: 100000,
+    coupon: undefined,
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "8" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "SUCCESS",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "8" } },
+  },
+  {
+    customer: { connect: { id: "9" } },
+    amount: 100000,
+    coupon: { connect: { id: "2" } },
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "9" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "SUCCESS",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "9" } },
+  },
+  {
+    customer: { connect: { id: "10" } },
+    amount: 100000,
+    coupon: undefined,
+    TemplateTransaction: {
+      create: [
+        {
+          template: { connect: { id: "10" } },
+        },
+      ],
+    },
+    PaymentHistory: {
+      create: [
+        {
+          paidAt: new Date(),
+          status: "PENDING",
+          expiredAt: new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
+      ],
+    },
+    Testimonials: { connect: { id: "10" } },
+  },
+];
+
+const websites: Prisma.WebsiteCreateInput[] = [
+  {
+    id: "1", // Website 1
+    websiteName: "My Wedding Website",
+    owner: { connect: { id: "1" } }, // Menghubungkan ke user dengan ID "1"
+    content:
+      "<h1>Welcome to Our Wedding!</h1><p>We are excited to celebrate our special day with you.</p>",
+    isPublic: true,
+    template: { connect: { id: "1" } }, // Menghubungkan ke template dengan ID "1"
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "2", // Website 2
+    websiteName: "John's Photography Portfolio",
+    owner: { connect: { id: "2" } }, // Menghubungkan ke user dengan ID "2"
+    content: "<h1>John's Photography</h1><p>Capturing moments that matter.</p>",
+    isPublic: true,
+    template: { connect: { id: "2" } }, // Menghubungkan ke template dengan ID "2"
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "3", // Website 3
+    websiteName: "Jane's Bakery",
+    owner: { connect: { id: "3" } }, // Menghubungkan ke user dengan ID "3"
+    content:
+      "<h1>Welcome to Jane's Bakery</h1><p>Freshly baked goods every day!</p>",
+    isPublic: true,
+    template: { connect: { id: "3" } }, // Menghubungkan ke template dengan ID "3"
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "4", // Website 4
+    websiteName: "Tech Conference 2023",
+    owner: { connect: { id: "4" } }, // Menghubungkan ke user dengan ID "4"
+    content:
+      "<h1>Tech Conference 2023</h1><p>Join us for the biggest tech event of the year!</p>",
+    isPublic: true,
+    template: { connect: { id: "4" } }, // Menghubungkan ke template dengan ID "4"
+    expiredAt: new Date(new Date().setMonth(new Date().getMonth() + 6)), // Kedaluwarsa 6 bulan dari sekarang
+  },
+  {
+    id: "5", // Website 5
+    websiteName: "Travel Blog by Alice",
+    owner: { connect: { id: "5" } }, // Menghubungkan ke user dengan ID "5"
+    content:
+      "<h1>Alice's Travel Blog</h1><p>Exploring the world, one destination at a time.</p>",
+    isPublic: true,
+    template: { connect: { id: "5" } }, // Menghubungkan ke template dengan ID "5"
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "6", // Website 6
+    websiteName: "Fitness Hub",
+    owner: { connect: { id: "6" } }, // Menghubungkan ke user dengan ID "6"
+    content:
+      "<h1>Fitness Hub</h1><p>Your journey to a healthier lifestyle starts here.</p>",
+    isPublic: true,
+    template: { connect: { id: "6" } }, // Menghubungkan ke template dengan ID "6"
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "7", // Website 7
+    websiteName: "Luxury Events",
+    owner: { connect: { id: "7" } }, // Menghubungkan ke user dengan ID "7"
+    content: "<h1>Luxury Events</h1><p>Creating unforgettable experiences.</p>",
+    isPublic: true,
+    template: { connect: { id: "7" } }, // Menghubungkan ke template dengan ID "7"
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "8", // Website 8
+    websiteName: "Online Course Platform",
+    owner: { connect: { id: "8" } }, // Menghubungkan ke user dengan ID "8"
+    content:
+      "<h1>Learn With Us</h1><p>Expand your knowledge with our online courses.</p>",
+    isPublic: true,
+    template: { connect: { id: "8" } }, // Menghubungkan ke template dengan ID "8"
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "9", // Website 9
+    websiteName: "Eco-Friendly Store",
+    owner: { connect: { id: "9" } }, // Menghubungkan ke user dengan ID "9"
+    content:
+      "<h1>Eco-Friendly Store</h1><p>Sustainable products for a better future.</p>",
+    isPublic: true,
+    template: { connect: { id: "9" } }, // Menghubungkan ke template dengan ID "9"
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+  {
+    id: "10", // Website 10
+    websiteName: "Creative Agency",
+    owner: { connect: { id: "10" } }, // Menghubungkan ke user dengan ID "10"
+    content: "<h1>Creative Agency</h1><p>We bring your ideas to life.</p>",
+    isPublic: true,
+    template: { connect: { id: "10" } }, // Menghubungkan ke template dengan ID "10"
+    expiredAt: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // Kedaluwarsa 1 tahun dari sekarang
+  },
+];
+
+const rsvps: Prisma.RSVPCreateInput[] = [
+  // RSVP untuk Website 1 (ID: "1")
+  {
+    id: "1", // RSVP 1
+    website: { connect: { id: "1" } }, // Menghubungkan ke website dengan ID "1"
+    name: "Alice Johnson",
+    status: "ATTEND",
+    message: "Looking forward to the wedding!",
+  },
+  {
+    id: "2", // RSVP 2
+    website: { connect: { id: "1" } }, // Menghubungkan ke website dengan ID "1"
+    name: "Bob Smith",
+    status: "NOT_ATTEND",
+    message: "Sorry, I have a prior commitment.",
+  },
+
+  // RSVP untuk Website 2 (ID: "2")
+  {
+    id: "3", // RSVP 3
+    website: { connect: { id: "2" } }, // Menghubungkan ke website dengan ID "2"
+    name: "Charlie Brown",
+    status: "ATTEND",
+    message: "Can't wait to see your portfolio!",
+  },
+  {
+    id: "4", // RSVP 4
+    website: { connect: { id: "2" } }, // Menghubungkan ke website dengan ID "2"
+    name: "Diana Prince",
+    status: "UNCERTAIN",
+    message: "I'll let you know closer to the date.",
+  },
+
+  // RSVP untuk Website 3 (ID: "3")
+  {
+    id: "5", // RSVP 5
+    website: { connect: { id: "3" } }, // Menghubungkan ke website dengan ID "3"
+    name: "Eve Adams",
+    status: "ATTEND",
+    message: "Excited to try your baked goods!",
+  },
+  {
+    id: "6", // RSVP 6
+    website: { connect: { id: "3" } }, // Menghubungkan ke website dengan ID "3"
+    name: "Frank White",
+    status: "NOT_ATTEND",
+    message: "Unfortunately, I can't make it.",
+  },
+
+  // RSVP untuk Website 4 (ID: "4")
+  {
+    id: "7", // RSVP 7
+    website: { connect: { id: "4" } }, // Menghubungkan ke website dengan ID "4"
+    name: "Grace Lee",
+    status: "ATTEND",
+    message: "Looking forward to the tech talks!",
+  },
+  {
+    id: "8", // RSVP 8
+    website: { connect: { id: "4" } }, // Menghubungkan ke website dengan ID "4"
+    name: "Henry Ford",
+    status: "UNCERTAIN",
+    message: "I might have a conflict that day.",
+  },
+
+  // RSVP untuk Website 5 (ID: "5")
+  {
+    id: "9", // RSVP 9
+    website: { connect: { id: "5" } }, // Menghubungkan ke website dengan ID "5"
+    name: "Ivy Green",
+    status: "ATTEND",
+    message: "Love your travel stories!",
+  },
+  {
+    id: "10", // RSVP 10
+    website: { connect: { id: "5" } }, // Menghubungkan ke website dengan ID "5"
+    name: "Jack Black",
+    status: "NOT_ATTEND",
+    message: "Wish I could be there!",
+  },
+
+  // RSVP untuk Website 6 (ID: "6")
+  {
+    id: "11", // RSVP 11
+    website: { connect: { id: "6" } }, // Menghubungkan ke website dengan ID "6"
+    name: "Karen White",
+    status: "ATTEND",
+    message: "Ready to get fit!",
+  },
+  {
+    id: "12", // RSVP 12
+    website: { connect: { id: "6" } }, // Menghubungkan ke website dengan ID "6"
+    name: "Leo Garcia",
+    status: "UNCERTAIN",
+    message: "I'll confirm later.",
+  },
+
+  // RSVP untuk Website 7 (ID: "7")
+  {
+    id: "13", // RSVP 13
+    website: { connect: { id: "7" } }, // Menghubungkan ke website dengan ID "7"
+    name: "Mia Johnson",
+    status: "ATTEND",
+    message: "Excited for the event!",
+  },
+  {
+    id: "14", // RSVP 14
+    website: { connect: { id: "7" } }, // Menghubungkan ke website dengan ID "7"
+    name: "Noah Brown",
+    status: "NOT_ATTEND",
+    message: "Sorry, I can't make it.",
+  },
+
+  // RSVP untuk Website 8 (ID: "8")
+  {
+    id: "15", // RSVP 15
+    website: { connect: { id: "8" } }, // Menghubungkan ke website dengan ID "8"
+    name: "Olivia Davis",
+    status: "ATTEND",
+    message: "Can't wait to learn new things!",
+  },
+  {
+    id: "16", // RSVP 16
+    website: { connect: { id: "8" } }, // Menghubungkan ke website dengan ID "8"
+    name: "Peter Wilson",
+    status: "UNCERTAIN",
+    message: "I'll check my schedule.",
+  },
+
+  // RSVP untuk Website 9 (ID: "9")
+  {
+    id: "17", // RSVP 17
+    website: { connect: { id: "9" } }, // Menghubungkan ke website dengan ID "9"
+    name: "Quinn Evans",
+    status: "ATTEND",
+    message: "Love your eco-friendly products!",
+  },
+  {
+    id: "18", // RSVP 18
+    website: { connect: { id: "9" } }, // Menghubungkan ke website dengan ID "9"
+    name: "Rachel Green",
+    status: "NOT_ATTEND",
+    message: "Wish I could support!",
+  },
+
+  // RSVP untuk Website 10 (ID: "10")
+  {
+    id: "19", // RSVP 19
+    website: { connect: { id: "10" } }, // Menghubungkan ke website dengan ID "10"
+    name: "Sam Taylor",
+    status: "ATTEND",
+    message: "Excited to see your creative work!",
+  },
+  {
+    id: "20", // RSVP 20
+    website: { connect: { id: "10" } }, // Menghubungkan ke website dengan ID "10"
+    name: "Tina Moore",
+    status: "UNCERTAIN",
+    message: "I'll let you know soon.",
+  },
+];
+
 async function main() {
+  for (const role of roles) {
+    await prisma.role.create({ data: role });
+  }
+
+  for (const user of users) {
+    await prisma.user.create({ data: user });
+  }
+
+  for (const coupon of coupons) {
+    await prisma.coupon.create({ data: coupon });
+  }
+
+  for (const templateCategory of templateCategories) {
+    await prisma.templateCategory.create({ data: templateCategory });
+  }
+
   for (const template of templates) {
     await prisma.template.create({ data: template });
   }
 
   for (const testimonial of testimonials) {
     await prisma.testimonials.create({ data: testimonial });
+  }
+
+  for (const transaction of transactions) {
+    await prisma.transaction.create({ data: transaction });
+  }
+
+  for (const website of websites) {
+    await prisma.website.create({ data: website });
+  }
+
+  for (const rsvp of rsvps) {
+    await prisma.rSVP.create({ data: rsvp });
   }
 
   console.log("Seeding completed!");
