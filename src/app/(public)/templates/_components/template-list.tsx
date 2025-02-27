@@ -7,7 +7,7 @@ import Templates from "@/app/(public)/templates/_components/templates";
 import PerPage from "@/app/(public)/templates/_components/per-page";
 import { useSearchParams } from "next/navigation";
 import { GetTemplateParams, getTemplates } from "@/actions/template";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import Pagination from "@/app/(public)/templates/_components/pagination";
 
 const TemplateList = () => {

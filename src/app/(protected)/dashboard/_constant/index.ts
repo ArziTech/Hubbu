@@ -73,7 +73,7 @@ export const ADMIN_SIDEBAR: CollapsibleMenuItems[] = [
       },
       {
         title: "Coupon",
-        url: "/dashboard/admin/manage/testimonial",
+        url: "/dashboard/admin/manage/coupon",
         icon: Boxes,
       },
       {
@@ -84,6 +84,11 @@ export const ADMIN_SIDEBAR: CollapsibleMenuItems[] = [
       {
         title: "Template Category",
         url: "/dashboard/admin/manage/template-category",
+        icon: Boxes,
+      },
+      {
+        title: "Testimonial",
+        url: "/dashboard/admin/manage/testimonial",
         icon: Boxes,
       },
       {

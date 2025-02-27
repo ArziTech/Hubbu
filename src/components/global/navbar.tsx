@@ -5,7 +5,7 @@ import hubbuHorizontal from "../../../public/logo/hubbu-horizontal.svg";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { auth, signOut } from "@/auth";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LogOut } from "lucide-react";
-import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const Navbar = async () => {
@@ -35,8 +34,14 @@ const Navbar = async () => {
             {session?.user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline">
-                    <Avatar>{session.user.name}</Avatar>
+                  <Button variant="outline" className={"overflow-hidden"}>
+                    {session.user.image ? (
+                      <Avatar>
+                        <AvatarImage src={session.user.image}></AvatarImage>
+                      </Avatar>
+                    ) : (
+                      session.user.name
+                    )}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
