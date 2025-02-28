@@ -12,11 +12,11 @@ import {
 } from "@/components/table/table-data";
 import { deleteManyTestimonialsByID } from "@/actions/testimonial";
 
-type TestimonialColumn = Testimonials;
+type Column = Testimonials;
 
-export const columns: ColumnDef<TestimonialColumn>[] = [
-  selectColumn<TestimonialColumn>(),
-  numberColumn<TestimonialColumn>(),
+export const columns: ColumnDef<Column>[] = [
+  selectColumn<Column>(),
+  numberColumn<Column>(),
   {
     accessorKey: "name",
     header: ({ column }) => (
@@ -47,7 +47,7 @@ export const columns: ColumnDef<TestimonialColumn>[] = [
       />
     ),
   },
-  moreActionColumn<TestimonialColumn>({
+  moreActionColumn<Column>({
     deleteFNAction: deleteManyTestimonialsByID,
   }),
 ];

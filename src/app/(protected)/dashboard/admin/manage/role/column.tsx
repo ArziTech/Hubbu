@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/table-core";
-import { Website } from "@prisma/client";
+import { Role } from "@prisma/client";
 import { DataTableColumnHeader } from "@/components/table/table-header-sortable";
 // import DropdownRole from "@/components/Table/DropdownRole";
 
@@ -10,25 +10,25 @@ import {
   numberColumn,
   selectColumn,
 } from "@/components/table/table-data";
-import { deleteManyWebsitesByID } from "@/actions/website";
+import { deleteManyRolesByID } from "@/actions/role";
 
-type WebsiteColumn = Website;
+type Column = Role;
 
-export const columns: ColumnDef<WebsiteColumn>[] = [
-  selectColumn<WebsiteColumn>(),
-  numberColumn<WebsiteColumn>(),
+export const columns: ColumnDef<Column>[] = [
+  selectColumn<Column>(),
+  numberColumn<Column>(),
   {
-    accessorKey: "websiteName",
+    accessorKey: "title",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title={"website name"}
+        title={"title"}
         className={"w-full"}
       />
     ),
   },
 
-  moreActionColumn<WebsiteColumn>({
-    deleteFNAction: deleteManyWebsitesByID,
+  moreActionColumn<Column>({
+    deleteFNAction: deleteManyRolesByID,
   }),
 ];

@@ -1,10 +1,10 @@
 import Category from "@/app/(public)/templates/_components/category";
 // import Rating from "@/app/(public)/templates/_components/rating";
 // import Sort from "@/app/(public)/templates/_components/sort";
-import { getAllTemplateCategory } from "@/actions/template-category";
+import { getAllTemplateCategories } from "@/actions/template-category";
 
 const Sidebar = async () => {
-  const allCategories = await getAllTemplateCategory();
+  const allCategories = await getAllTemplateCategories();
 
   if (!allCategories.data) return null;
 

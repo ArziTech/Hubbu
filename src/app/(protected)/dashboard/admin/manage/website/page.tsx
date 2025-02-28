@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { DataTable } from "@/components/table/table-data";
 import { deleteManyWebsitesByID, getAllWebsite } from "@/actions/website";
-import { columns } from "@/app/(protected)/dashboard/admin/manage/website/website-column";
+import { columns } from "./column";
 
 const Page = () => {
   return (

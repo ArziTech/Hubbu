@@ -1,9 +1,9 @@
 "use server";
-// *GET ALL Website
 import { Website } from "@prisma/client";
 import { ActionResponse } from "@/lib/types";
 import { prisma } from "@/lib/prisma";
 
+// *GET ALL Website
 export async function getAllWebsite(): Promise<ActionResponse<Website[]>> {
   try {
     const allWebsites = await prisma.website.findMany();

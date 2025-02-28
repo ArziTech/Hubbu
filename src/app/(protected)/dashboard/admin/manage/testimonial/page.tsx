@@ -5,7 +5,7 @@ import {
   deleteManyTestimonialsByID,
   getAllTestimonials,
 } from "@/actions/testimonial";
-import { columns } from "@/app/(protected)/dashboard/admin/manage/testimonial/testimonial-column";
+import { columns } from "./column";
 
 const Page = () => {
   return (

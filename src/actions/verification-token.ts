@@ -1,11 +1,11 @@
 "use server";
 import { ActionResponse } from "@/lib/types";
-import { verificationToken } from "@prisma/client";
+import { VerificationToken } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 export async function createVerificationTokenByEmail(
   email: string,
-): Promise<ActionResponse<verificationToken>> {
+): Promise<ActionResponse<VerificationToken>> {
   try {
     const expires = new Date();
     expires.setHours(expires.getHours() + 1);
@@ -29,7 +29,7 @@ export async function createVerificationTokenByEmail(
 
 export async function getVerificationTokensByEmail(
   email: string,
-): Promise<ActionResponse<verificationToken[]>> {
+): Promise<ActionResponse<VerificationToken[]>> {
   try {
     // tambahkan order berdasarkan tanggal
     const token = await prisma.verificationToken.findMany({

@@ -12,11 +12,11 @@ import {
   selectColumn,
 } from "@/components/table/table-data";
 
-type UserColumn = User;
+type Column = User;
 
-export const columns: ColumnDef<UserColumn>[] = [
-  selectColumn<UserColumn>(),
-  numberColumn<UserColumn>(),
+export const columns: ColumnDef<Column>[] = [
+  selectColumn<Column>(),
+  numberColumn<Column>(),
   {
     accessorKey: "name",
     header: ({ column }) => (
@@ -49,7 +49,7 @@ export const columns: ColumnDef<UserColumn>[] = [
   //     return <DropdownRole role={role} userId={userId}></DropdownRole>;
   //   },
   // },
-  moreActionColumn<UserColumn>({
+  moreActionColumn<Column>({
     deleteFNAction: deleteManyUserByID,
   }),
 ];

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { DataTable } from "@/components/table/table-data";
-import { columns } from "@/app/(protected)/dashboard/admin/manage/users/user-column";
+import { columns } from "./column";
 import { deleteManyUserByID, getAllUser } from "@/actions/user";
 
 const Page = () => {

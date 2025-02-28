@@ -1,21 +1,22 @@
 "use server";
+
 import { ActionResponse } from "@/lib/types";
+import { Permissions } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { Testimonials } from "@prisma/client";
 
 // *GET
-export async function getAllTestimonials(): Promise<
-  ActionResponse<Testimonials[]>
+export async function getAllLPermissions(): Promise<
+  ActionResponse<Permissions[]>
 > {
   try {
-    const allTestimonials = await prisma.testimonials.findMany();
-    if (!allTestimonials)
-      return { status: "ERROR", error: "Website not found" };
+    const allPermissions = await prisma.permissions.findMany();
+    if (!allPermissions)
+      return { status: "ERROR", error: "Permissions not found" };
 
     return {
       status: "SUCCESS",
-      success: "Successfully fetching testimonials",
-      data: allTestimonials,
+      success: "Successfully fetching permissions",
+      data: allPermissions,
     };
   } catch {
     return { status: "ERROR", error: "Something went wrong" };
@@ -23,23 +24,23 @@ export async function getAllTestimonials(): Promise<
 }
 
 // *DELETE
-export async function deleteManyTestimonialsByID(
+export async function deleteManyPermissionsByID(
   ids: string[],
 ): Promise<ActionResponse<never>> {
   try {
     // Check if users exist or not
-    const testimonials = await prisma.testimonials.findMany({
+    const permissions = await prisma.permissions.findMany({
       where: {
         id: { in: ids },
       },
     });
 
-    if (testimonials.length === 0) {
-      return { status: "ERROR", error: "Websites do not exist" };
+    if (permissions.length === 0) {
+      return { status: "ERROR", error: "Coupons do not exist" };
     }
 
     // Check for foreign key constraints (e.g., articles related to the users)
-    // TODO: Check the row or table that has relation with user
+    // TODO: Check the row or table that has relation with role
     // const usersWithArticles = await prisma.article.findMany({
     //   where: {
     //     authorId: { in: ids },
@@ -56,22 +57,22 @@ export async function deleteManyTestimonialsByID(
     //   };
     // }
 
-    // Delete users in parallel
+    // Delete rows in parallel
     const deletePromises = ids.map((id) =>
-      prisma.website.delete({
+      prisma.coupon.delete({
         where: { id },
       }),
     );
 
     await Promise.all(deletePromises);
 
-    return { status: "SUCCESS", success: "Successfully deleted testimonials" };
+    return { status: "SUCCESS", success: "Successfully deleted permissions" };
   } catch (err: unknown) {
     // @ts-expect-error the error object here could be anything
     if (err.code && err.code === "P2003") {
       return {
         status: "ERROR",
-        error: "Tidak bisa menghapus testimonials.",
+        error: "Tidak bisa menghapus permissions.",
       };
     }
     // @ts-expect-error should be okay

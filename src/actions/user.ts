@@ -3,8 +3,6 @@ import { Prisma, User } from "@prisma/client";
 import { ActionResponse } from "@/lib/types";
 import { prisma } from "@/lib/prisma";
 import UserCreateInput = Prisma.UserCreateInput;
-import { undefined } from "zod";
-import { input } from "sucrase/dist/types/parser/traverser/base";
 
 export async function createUser(
   input: UserCreateInput,

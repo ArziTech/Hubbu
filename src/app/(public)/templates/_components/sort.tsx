@@ -1,7 +1,7 @@
 import React from "react";
 import { useQueryState } from "nuqs";
 import { useQuery } from "react-query";
-import { getAllTemplateCategory } from "@/actions/template-category";
+import { getAllTemplateCategories } from "@/actions/template-category";
 import { ArrowDownUp, LibraryBig } from "lucide-react";
 import Select from "@/app/(public)/templates/_components/select";
 

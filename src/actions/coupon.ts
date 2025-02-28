@@ -1,21 +1,19 @@
 "use server";
+
+import { Coupon } from "@prisma/client";
 import { ActionResponse } from "@/lib/types";
 import { prisma } from "@/lib/prisma";
-import { Testimonials } from "@prisma/client";
 
-// *GET
-export async function getAllTestimonials(): Promise<
-  ActionResponse<Testimonials[]>
-> {
+// *GET ALL Website
+export async function getAllCoupon(): Promise<ActionResponse<Coupon[]>> {
   try {
-    const allTestimonials = await prisma.testimonials.findMany();
-    if (!allTestimonials)
-      return { status: "ERROR", error: "Website not found" };
+    const allCoupons = await prisma.coupon.findMany();
+    if (!allCoupons) return { status: "ERROR", error: "Coupons not found" };
 
     return {
       status: "SUCCESS",
-      success: "Successfully fetching testimonials",
-      data: allTestimonials,
+      success: "Successfully fetching Coupons",
+      data: allCoupons,
     };
   } catch {
     return { status: "ERROR", error: "Something went wrong" };
@@ -23,23 +21,23 @@ export async function getAllTestimonials(): Promise<
 }
 
 // *DELETE
-export async function deleteManyTestimonialsByID(
+export async function deleteManyCouponsByID(
   ids: string[],
 ): Promise<ActionResponse<never>> {
   try {
     // Check if users exist or not
-    const testimonials = await prisma.testimonials.findMany({
+    const coupons = await prisma.coupon.findMany({
       where: {
         id: { in: ids },
       },
     });
 
-    if (testimonials.length === 0) {
-      return { status: "ERROR", error: "Websites do not exist" };
+    if (coupons.length === 0) {
+      return { status: "ERROR", error: "Coupons do not exist" };
     }
 
     // Check for foreign key constraints (e.g., articles related to the users)
-    // TODO: Check the row or table that has relation with user
+    // TODO: Check the row or table that has relation with role
     // const usersWithArticles = await prisma.article.findMany({
     //   where: {
     //     authorId: { in: ids },
@@ -58,20 +56,20 @@ export async function deleteManyTestimonialsByID(
 
     // Delete users in parallel
     const deletePromises = ids.map((id) =>
-      prisma.website.delete({
+      prisma.coupon.delete({
         where: { id },
       }),
     );
 
     await Promise.all(deletePromises);
 
-    return { status: "SUCCESS", success: "Successfully deleted testimonials" };
+    return { status: "SUCCESS", success: "Successfully deleted coupons" };
   } catch (err: unknown) {
     // @ts-expect-error the error object here could be anything
     if (err.code && err.code === "P2003") {
       return {
         status: "ERROR",
-        error: "Tidak bisa menghapus testimonials.",
+        error: "Tidak bisa menghapus coupons.",
       };
     }
     // @ts-expect-error should be okay
