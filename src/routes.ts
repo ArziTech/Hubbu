@@ -44,13 +44,12 @@ export const publicRoutesPrefix: string[] = [
   "/preview",
   "/transaction",
   // TODO: change this to protected
-  "editor",
+  "/editor",
 ];
 
 export function checkPublicRoute(route: string): boolean {
   const check1 = publicRoutes.includes(route);
 
-  // i want to check if the prefix is match or not, eventough only one is true
   const check2 = publicRoutesPrefix.some((routePrefix) => {
     return route.startsWith(routePrefix);
   });

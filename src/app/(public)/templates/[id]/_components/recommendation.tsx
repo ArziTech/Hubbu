@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
-import { Images } from "lucide-react";
 import TemplateCard from "@/components/global/template-card";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { GetTemplateParams, getTemplates } from "@/actions/template";
 
 const Recommendation = () => {

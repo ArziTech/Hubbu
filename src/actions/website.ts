@@ -2,6 +2,7 @@
 import { Website } from "@prisma/client";
 import { ActionResponse } from "@/lib/types";
 import { prisma } from "@/lib/prisma";
+import { prismaErrorChecker } from "@/lib/prismaErrorChecker";
 
 // *GET ALL Website
 export async function getAllWebsite(): Promise<ActionResponse<Website[]>> {
@@ -16,6 +17,29 @@ export async function getAllWebsite(): Promise<ActionResponse<Website[]>> {
     };
   } catch {
     return { status: "ERROR", error: "Something went wrong" };
+  }
+}
+
+export async function getWebsiteById(
+  id: string,
+): Promise<ActionResponse<Website>> {
+  try {
+    const website = await prisma.website.findUnique({
+      where: { id },
+    });
+    if (!website) {
+      return {
+        status: "ERROR",
+        error: "Error fetching website",
+      };
+    }
+    return {
+      status: "SUCCESS",
+      success: "Successfully fetching website with id",
+      data: website,
+    };
+  } catch (error) {
+    return prismaErrorChecker(error);
   }
 }
 
