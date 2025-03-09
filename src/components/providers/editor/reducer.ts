@@ -51,10 +51,12 @@ export const editorReducer = (
           : nullElement,
       };
 
-      const updatedHistory: Editor[] = [
-        ...state.history.slice(0, state.currentIndex + 1),
-        { ...updatedEditor },
-      ];
+      const updatedHistory: Editor[] = Array.isArray(state.history)
+        ? [
+            ...state.history.slice(0, state.currentIndex + 1), // Gunakan spread operator untuk menggabungkan elemen
+            { ...updatedEditor }, // Tambahkan elemen baru
+          ]
+        : [{ ...updatedEditor }]; // Jika history bukan array, buat array baru dengan elemen ini
 
       const newEditorState: EditorState = {
         ...state,

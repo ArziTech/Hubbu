@@ -43,6 +43,60 @@ export async function getWebsiteById(
   }
 }
 
+export async function getWebsiteElementsById(
+  id: string,
+): Promise<ActionResponse<{ elements: string }>> {
+  try {
+    const website = await prisma.website.findUnique({
+      where: { id },
+      select: {
+        content: true,
+      },
+    });
+    if (!website) {
+      return {
+        status: "ERROR",
+        error: "Error fetching website element",
+      };
+    }
+    return {
+      status: "SUCCESS",
+      success: `Successfully fetching website element with id ${id}`,
+      data: { elements: website.content },
+    };
+  } catch (error) {
+    return prismaErrorChecker(error);
+  }
+}
+
+// *UPDATE
+export async function updateWebsiteContentById(
+  id: string,
+  content: string,
+): Promise<ActionResponse<Website>> {
+  try {
+    const website = await prisma.website.update({
+      where: { id },
+      data: {
+        content,
+      },
+    });
+    if (!website) {
+      return {
+        status: "ERROR",
+        error: "Error updating website",
+      };
+    }
+    return {
+      status: "SUCCESS",
+      success: "Successfully updating website with id",
+      data: website,
+    };
+  } catch (error) {
+    return prismaErrorChecker(error);
+  }
+}
+
 // *DELETE
 export async function deleteManyWebsitesByID(
   ids: string[],

@@ -89,3 +89,11 @@ export type Action =
   | { type: "UNDO" }
   | { type: "LOAD_DATA"; payload: { elements: EditorElement[] } }
   | { type: "SET_WEBSITE_ID"; payload: { websiteId: string } };
+
+export const defaultStyles: React.CSSProperties = {
+  backgroundPosition: "center",
+  objectFit: "cover",
+  backgroundRepeat: "no-repeat",
+  textAlign: "left",
+  opacity: "100%",
+};
