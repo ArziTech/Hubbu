@@ -40,6 +40,10 @@ const ElementStyle = () => {
       <div className="ms-16 text-left text-black">
         {selectedElement !== nullElement ? (
           <Accordion type="multiple">
+            {/* TODO:*/}
+            {/* Add src for video component */}
+            {/* Add Inner text for text component */}
+            {/* Add Inner text & href for link component */}
             <Typography />
             <Layout />
             <Appearance />

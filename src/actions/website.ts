@@ -97,6 +97,33 @@ export async function updateWebsiteContentById(
   }
 }
 
+export async function updateWebsiteNameById(
+  id: string,
+  newName: string,
+): Promise<ActionResponse<Website>> {
+  try {
+    const website = await prisma.website.update({
+      where: { id },
+      data: {
+        websiteName: newName,
+      },
+    });
+    if (!website) {
+      return {
+        status: "ERROR",
+        error: "Error updating website",
+      };
+    }
+    return {
+      status: "SUCCESS",
+      success: `Successfully updating website name with id into ${newName}`,
+      data: website,
+    };
+  } catch (error) {
+    return prismaErrorChecker(error);
+  }
+}
+
 // *DELETE
 export async function deleteManyWebsitesByID(
   ids: string[],

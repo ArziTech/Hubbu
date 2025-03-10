@@ -3,6 +3,13 @@ import React, { useEffect } from "react";
 import { useEditor } from "@/components/providers/editor/context";
 import { getWebsiteElementsById } from "@/actions/website";
 import Recursive from "@/app/editor/[id]/_components/editor/recursive";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu";
+import RightClickOptions from "./right-click-options";
 
 interface Props {
   websiteId: string;
@@ -34,12 +41,17 @@ const Editor = ({ websiteId }: Props) => {
   }, [websiteId]);
 
   return (
-    <div className={"h-full w-[calc(100%-400px)]"}>
-      {Array.isArray(state.editor.elements)
-        ? state.editor.elements.map((childElement) => (
-            <Recursive key={childElement.id} element={childElement} />
-          ))
-        : null}
+    <div className={"mt-[74px] h-full w-[calc(100%-400px)]"}>
+      <ContextMenu>
+        <ContextMenuTrigger>
+          {Array.isArray(state.editor.elements)
+            ? state.editor.elements.map((childElement) => (
+                <Recursive key={childElement.id} element={childElement} />
+              ))
+            : null}
+        </ContextMenuTrigger>
+        <RightClickOptions></RightClickOptions>
+      </ContextMenu>
     </div>
   );
 };

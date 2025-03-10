@@ -23,10 +23,12 @@ export const editorReducer = (
         elements: AddAnElement(state.editor.elements, action),
       };
 
-      const updatedHistory: Editor[] = [
-        ...state.history.slice(0, state.currentIndex + 1),
-        { ...addedEditorElement },
-      ];
+      const updatedHistory: Editor[] = Array.isArray(state.history)
+        ? [
+            ...state.history.slice(0, state.currentIndex + 1), // Gunakan spread operator untuk menggabungkan elemen
+            { ...addedEditorElement }, // Tambahkan elemen baru
+          ]
+        : [{ ...addedEditorElement }]; // Jika history bukan array, buat array baru dengan elemen ini
 
       const newEditorState: EditorState = {
         ...state,
@@ -40,6 +42,10 @@ export const editorReducer = (
     }
     case "UPDATE_ELEMENT": {
       const updatedElements = UpdateAnElement(state.editor.elements, action);
+
+      console.log(`update: `);
+      console.log(updatedElements);
+
       const updateElementIsSelected =
         state.editor.selectedElement.id === action.payload.elementDetails.id;
 
@@ -78,10 +84,12 @@ export const editorReducer = (
         elements: elementsAfterDelete,
       };
 
-      const updatedHistory: Editor[] = [
-        ...state.history.slice(0, state.currentIndex + 1),
-        { ...editorAfterDelete },
-      ];
+      const updatedHistory: Editor[] = Array.isArray(state.history)
+        ? [
+            ...state.history.slice(0, state.currentIndex + 1), // Gunakan spread operator untuk menggabungkan elemen
+            { ...editorAfterDelete }, // Tambahkan elemen baru
+          ]
+        : [{ ...editorAfterDelete }]; // Jika history bukan array, buat array baru dengan elemen ini
 
       const newEditorState: EditorState = {
         ...state,
@@ -181,10 +189,12 @@ export const editorReducer = (
         ...state.editor,
         websiteId,
       };
-      const updatedHistory: Editor[] = [
-        ...state.history.slice(0, state.currentIndex + 1),
-        { ...updatedWebsiteIdEditor },
-      ];
+      const updatedHistory: Editor[] = Array.isArray(state.history)
+        ? [
+            ...state.history.slice(0, state.currentIndex + 1), // Gunakan spread operator untuk menggabungkan elemen
+            { ...updatedWebsiteIdEditor }, // Tambahkan elemen baru
+          ]
+        : [{ ...updatedWebsiteIdEditor }]; // Jika history bukan array, buat array baru dengan elemen ini
 
       const updatedWebsiteIdState: EditorState = {
         ...state,

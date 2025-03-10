@@ -1,7 +1,9 @@
 import React from "react";
 import { EditorElement } from "@/components/providers/editor";
-import Container from "./elements/container";
+import ContainerComponent from "./elements/container-component";
 import TextComponent from "./elements/text-component";
+import VideoComponent from "./elements/video-component";
+import BodyComponent from "./elements/body-component";
 
 interface Props {
   element: EditorElement;
@@ -9,9 +11,9 @@ interface Props {
 const Recursive = ({ element }: Props) => {
   switch (element.type) {
     case "__body":
-      return <Container element={element} />;
+      return <BodyComponent element={element} />;
     case "container":
-      return <Container element={element} />;
+      return <ContainerComponent element={element} />;
     case "image":
       break;
     case "link":
@@ -19,7 +21,7 @@ const Recursive = ({ element }: Props) => {
     case "text":
       return <TextComponent element={element} />;
     case "video":
-      break;
+      return <VideoComponent element={element} />;
     default:
       return null;
   }

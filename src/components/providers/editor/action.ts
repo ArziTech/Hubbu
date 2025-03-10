@@ -35,9 +35,18 @@ export function UpdateAnElement(
       item.id === action.payload.elementDetails.id &&
       Array.isArray(item.content)
     ) {
+      console.log("item");
+      console.log({ ...item });
+      console.log("action");
+      console.log({ ...action });
       return {
-        ...item,
-        ...action.payload.elementDetails,
+        id: action.payload.elementDetails.id,
+        content: { ...action.payload.elementDetails.content },
+        styles: {
+          ...action.payload.elementDetails.styles,
+        },
+        name: action.payload.elementDetails.name,
+        type: action.payload.elementDetails.type,
       };
     } else if (item.content && Array.isArray(item.content)) {
       return {
@@ -45,6 +54,7 @@ export function UpdateAnElement(
         content: UpdateAnElement(item.content, action),
       };
     }
+    console.log(`helloo returning item ${item.name}`);
     return item;
   });
 }
@@ -57,10 +67,7 @@ export function DeleteAnElement(
     throw new Error("You've passing the wrong action");
   }
   return editorArray.filter((item) => {
-    if (
-      item.id === action.payload.elementDetails.id &&
-      Array.isArray(item.content)
-    ) {
+    if (item.id === action.payload.elementDetails.id) {
       return false;
     } else if (item.content && Array.isArray(item.content)) {
       item.content = DeleteAnElement(item.content, action);

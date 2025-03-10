@@ -11,6 +11,7 @@ const DeleteElementButton = ({ element }: Props) => {
   const { state, dispatch } = useEditor();
 
   const handleDeleteElement = () => {
+    console.log(`deleting ${element.id}`);
     dispatch({
       type: "DELETE_ELEMENT",
       payload: { elementDetails: element },
@@ -26,11 +27,11 @@ const DeleteElementButton = ({ element }: Props) => {
   if (!shouldRenderButton) return null;
 
   return (
-    <div className="absolute -right-px -top-6 rounded-none rounded-t-lg bg-primary px-2 py-1 text-xs font-bold">
+    <div className="absolute -right-px -top-6 rounded-none rounded-t-lg bg-destructive px-2 py-1 text-xs font-bold">
       <Trash
         size={16}
         onClick={handleDeleteElement}
-        className="cursor-pointer"
+        className="cursor-pointer text-white"
       />
     </div>
   );

@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import TabList from "@/app/editor/[id]/_components/tab-list";
 import TabContent from "@/app/editor/[id]/_components/tab-content";
+import { ResizablePanelGroup } from "@/components/ui/resizable";
 
 type Props = {};
 const Sidebar = (props: Props) => {
@@ -36,6 +37,7 @@ const Sidebar = (props: Props) => {
         >
           <TabList />
         </SheetContent>
+
         <SheetContent
           showX={false}
           side={"left"}

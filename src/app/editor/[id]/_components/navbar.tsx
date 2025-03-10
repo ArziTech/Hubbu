@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useTransition } from "react";
+import React, { FocusEventHandler, useEffect, useTransition } from "react";
 import { Website } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useEditor } from "@/components/providers/editor/context";
@@ -11,8 +11,12 @@ import {
   RotateCw,
   Smartphone,
 } from "lucide-react";
-import { updateWebsiteContentById } from "@/actions/website";
+import {
+  updateWebsiteContentById,
+  updateWebsiteNameById,
+} from "@/actions/website";
 import { toast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
 
 interface Props {
   websiteDetails: Website;
@@ -52,6 +56,29 @@ const Navbar = ({ websiteDetails }: Props) => {
     });
   };
 
+  const handleTitleChange = async (e: React.FocusEvent<HTMLInputElement>) => {
+    if (e.target.value === websiteDetails.websiteName) return;
+    if (e.target.value) {
+      const updateResponse = await updateWebsiteNameById(
+        websiteDetails.id,
+        e.target.value,
+      );
+      if (updateResponse.status === "SUCCESS") {
+        toast({
+          title: "Success",
+          description: "Successfully updating website name",
+        });
+      } else {
+        console.log(updateResponse.error);
+        toast({
+          title: "Error",
+          description: "Failed updating website name",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
   return (
     <nav
       className={
@@ -63,7 +90,11 @@ const Navbar = ({ websiteDetails }: Props) => {
         <Button>
           <ChevronLeft />
         </Button>
-        <p className={"text-2xl font-medium"}>{websiteDetails.websiteName}</p>
+        <Input
+          defaultValue={websiteDetails.websiteName}
+          className={"m-0 h-fit w-full border-none p-1 text-lg"}
+          onBlur={(e) => handleTitleChange(e)}
+        />
       </div>
       {/* */}
       <div className={"flex gap-6"}>

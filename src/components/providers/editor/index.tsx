@@ -17,7 +17,9 @@ export type EditorElement = {
   styles: CSSProperties;
   name: string;
   type: EditorElementType;
-  content: EditorElement[] | { innerText?: string };
+  content:
+    | EditorElement[]
+    | { innerText?: string; src?: string; videoTitle?: string; href?: string };
 };
 
 export type Editor = {

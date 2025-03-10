@@ -1,24 +1,24 @@
 "use client";
 import React from "react";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { useEditor } from "@/components/providers/editor/context";
 
 interface Props {
+  id: string;
   name: string;
 }
-const ElementBadge = ({ name }: Props) => {
+const ElementBadge = ({ name, id }: Props) => {
   const { state } = useEditor();
-  const isShowBadge = !state.editor.liveMode || !state.editor.previewMode;
+  const showBadge = !state.editor.previewMode;
   return (
-    <Badge
+    <div
       className={cn(
-        "absolute -left-px -top-6 rounded-none rounded-t-lg",
-        isShowBadge && "hidden",
+        "absolute -left-px -top-6 rounded-none rounded-t-lg bg-primary px-2 py-1 text-xs text-white",
+        state.editor.selectedElement.id !== id || !showBadge ? "hidden" : "",
       )}
     >
       {name}
-    </Badge>
+    </div>
   );
 };
 export default ElementBadge;
