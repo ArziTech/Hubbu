@@ -8,32 +8,11 @@ import {
 import { useEditor } from "@/components/providers/editor/context";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
+import { handleStyleChange } from "@/components/providers/editor/events";
 
 const Appearance = () => {
   const { state, dispatch } = useEditor();
   const { selectedElement } = state.editor;
-
-  const handleOnChangeValue = (e) => {
-    const styleSetting = e.target.id;
-    const value = e.target.value;
-
-    const styleObject = {
-      [styleSetting]: value,
-    };
-
-    dispatch({
-      type: "UPDATE_ELEMENT",
-      payload: {
-        elementDetails: {
-          ...selectedElement,
-          styles: {
-            ...selectedElement.styles,
-            ...styleObject,
-          },
-        },
-      },
-    });
-  };
 
   return (
     <AccordionItem value="appearance">
@@ -53,12 +32,14 @@ const Appearance = () => {
           </div>
           <Slider
             onValueChange={(e) => {
-              handleOnChangeValue({
-                target: {
+              handleStyleChange(
+                {
                   id: "opacity",
                   value: `${e[0]}%`,
                 },
-              });
+                selectedElement,
+                dispatch,
+              );
             }}
             defaultValue={[
               typeof selectedElement.styles?.opacity === "number"

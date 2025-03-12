@@ -31,14 +31,7 @@ export function UpdateAnElement(
     throw new Error("You've passing the wrong action");
   }
   return editorArray.map((item) => {
-    if (
-      item.id === action.payload.elementDetails.id &&
-      Array.isArray(item.content)
-    ) {
-      console.log("item");
-      console.log({ ...item });
-      console.log("action");
-      console.log({ ...action });
+    if (item.id === action.payload.elementDetails.id) {
       return {
         id: action.payload.elementDetails.id,
         content: { ...action.payload.elementDetails.content },
@@ -54,7 +47,6 @@ export function UpdateAnElement(
         content: UpdateAnElement(item.content, action),
       };
     }
-    console.log(`helloo returning item ${item.name}`);
     return item;
   });
 }

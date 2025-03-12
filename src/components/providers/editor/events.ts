@@ -80,3 +80,29 @@ export const handleOnDrop = (
       break;
   }
 };
+
+export const handleStyleChange = (
+  e: { id: string; value: string },
+  element: EditorElement,
+  dispatch: (value: EditorAction) => void,
+) => {
+  const styleSetting = e.id;
+  const value = e.value;
+
+  const styleObject = {
+    [styleSetting]: value,
+  };
+
+  dispatch({
+    type: "UPDATE_ELEMENT",
+    payload: {
+      elementDetails: {
+        ...element,
+        styles: {
+          ...element.styles,
+          ...styleObject,
+        },
+      },
+    },
+  });
+};
