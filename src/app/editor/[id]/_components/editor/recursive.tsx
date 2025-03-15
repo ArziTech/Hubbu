@@ -18,6 +18,10 @@ const Recursive = ({ element }: Props) => {
       break;
     case "link":
       break;
+    case "background":
+      break;
+    case "section":
+      break;
     case "text":
       return <TextComponent element={element} />;
     case "video":

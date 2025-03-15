@@ -24,11 +24,14 @@ const TextComponent = (props: Props) => {
       style={props.element.styles}
       draggable
       onClick={handleOnClickBody}
-      className={clsx("relative w-full p-[2px] text-[16px] transition-all", {
-        "!border-solid border-blue-500":
-          state.editor.selectedElement.id === props.element.id,
-        "border-[1px] border-dashed border-slate-300": !state.editor.liveMode, // TODO: change this into editor.showBorder
-      })}
+      className={clsx(
+        "relative w-full p-[2px] text-[16px] transition-all",
+        "border-[1px] border-dashed border-slate-300", // TODO: make this dynamic
+        {
+          "!border-solid border-blue-500":
+            state.editor.selectedElement.id === props.element.id,
+        },
+      )}
     >
       <ElementBadge
         id={props.element.id}

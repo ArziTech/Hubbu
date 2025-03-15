@@ -19,19 +19,21 @@ const RenderPlaceholder = ({
     e.dataTransfer.setData("componentType", type as string);
   };
   return (
-    <div className={"grid place-content-center"}>
+    <div
+      className={
+        "grid size-[70px] place-content-center rounded-lg border-2 border-gray-600 bg-white p-2 hover:bg-primary hover:text-white"
+      }
+    >
       <div
         draggable
         onDragStart={(e) => {
           handleDragStart(e, id);
         }}
-        className={
-          "flex size-14 items-center justify-center rounded-lg bg-muted"
-        }
+        className={"flex w-full flex-col items-center justify-center gap-2"}
       >
         {Icon}
+        <span className={"mx-auto text-wrap text-xs"}>{label}</span>
       </div>
-      <span className={"mx-auto text-xs text-muted-foreground"}>{label}</span>
     </div>
   );
 };

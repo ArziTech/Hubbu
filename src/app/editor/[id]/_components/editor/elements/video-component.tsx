@@ -26,10 +26,14 @@ const VideoComponent = ({ element }: Props) => {
     <div
       style={styles}
       onClick={handleOnClick}
-      className={clsx("relative w-full transition-all", {
-        "border-solid border-blue-500": state.editor.selectedElement.id === id,
-        "border-[1px] border-dashed border-slate-300": !state.editor.liveMode,
-      })}
+      className={clsx(
+        "relative w-full transition-all",
+        "border-[1px] border-dashed border-slate-300", // TODO: make this dynamic
+        {
+          "border-solid border-blue-500":
+            state.editor.selectedElement.id === id,
+        },
+      )}
     >
       <ElementBadge id={element.id} name={name} />
       <DeleteElementButton element={element} />

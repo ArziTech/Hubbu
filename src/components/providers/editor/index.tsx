@@ -10,6 +10,7 @@ export type EditorElementType =
   | "video"
   | "__body"
   | "image"
+  | "background"
   | null;
 
 export type EditorElement = {
@@ -23,7 +24,6 @@ export type EditorElement = {
 };
 
 export type Editor = {
-  liveMode: boolean;
   elements: EditorElement[];
   selectedElement: EditorElement;
   device: DeviceType;
@@ -58,7 +58,6 @@ const initialEditorState: Editor = {
   selectedElement: nullElement,
   device: "DESKTOP",
   previewMode: false,
-  liveMode: false,
   websiteId: "",
 };
 
@@ -86,16 +85,17 @@ export type Action =
     }
   | { type: "CHANGE_DEVICE"; payload: { device: DeviceType } }
   | { type: "TOGGLE_PREVIEW_MODE"; payload: { value: boolean } }
-  | { type: "TOGGLE_LIVE_MODE"; payload: { value: boolean } }
   | { type: "REDO" }
   | { type: "UNDO" }
   | { type: "LOAD_DATA"; payload: { elements: EditorElement[] } }
   | { type: "SET_WEBSITE_ID"; payload: { websiteId: string } };
 
 export const defaultStyles: React.CSSProperties = {
-  backgroundPosition: "center",
-  objectFit: "cover",
-  backgroundRepeat: "no-repeat",
-  textAlign: "left",
+  overflowX: "visible",
+  overflowY: "visible",
+  position: "static",
+  display: "block",
   opacity: "100%",
+  width: "100%",
+  height: "fit-content",
 };

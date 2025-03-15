@@ -41,23 +41,21 @@ const ContainerComponent = ({ element }: Props) => {
   return (
     <div
       style={styles}
-      className={clsx("group relative p-4 transition-all", {
-        "w-full max-w-full": type === "container",
-        "h-fit": type === "container",
-        "h-full": type === "__body",
-        "border-blue-500":
-          state.editor.selectedElement.id === id && !state.editor.liveMode,
-        "border-solid":
-          state.editor.selectedElement.id === id && !state.editor.liveMode,
-        "border-state-300 border-[1px] border-dashed": !state.editor.liveMode,
-      })}
+      className={clsx(
+        "group relative h-full w-full p-4 transition-all",
+        "border-state-300 border-[1px] border-dashed", // TODO: make it dynamic
+        {
+          "border-blue-500": state.editor.selectedElement.id === id,
+          "border-solid": state.editor.selectedElement.id === id,
+        },
+      )}
       onDrop={(e) => handleOnDrop(e, id, element, dispatch)}
       onDragOver={handleDragOver}
       draggable={type !== "__body"}
       onDragStart={(e) => handleDragStart(e, "container")}
       onClick={handleOnClickBody}
     >
-      <ElementBadge name={name} />
+      <ElementBadge id={element.id} name={name} />
       <DeleteElementButton element={element} />
       {Array.isArray(content)
         ? content.map((childElement) => (

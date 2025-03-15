@@ -122,18 +122,6 @@ export const editorReducer = (
       };
       return changeDeviceState;
     }
-    case "TOGGLE_LIVE_MODE": {
-      const toggleLiveModeState: EditorState = {
-        ...state,
-        editor: {
-          ...state.editor,
-          liveMode: action.payload
-            ? action.payload.value
-            : !state.editor.liveMode,
-        },
-      };
-      return toggleLiveModeState;
-    }
     case "TOGGLE_PREVIEW_MODE": {
       const togglePreviewModeState: EditorState = {
         ...state,

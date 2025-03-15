@@ -42,14 +42,20 @@ const AddElement = () => {
     },
     {
       Icon: <Construction />,
-      label: "Section",
-      id: "section",
+      label: "Video",
+      id: "video",
       group: "elements",
     },
     {
       Icon: <Construction />,
-      label: "Video",
-      id: "video",
+      label: "BG",
+      id: "background",
+      group: "elements",
+    },
+    {
+      Icon: <Construction />,
+      label: "Section",
+      id: "section",
       group: "elements",
     },
     {
@@ -71,7 +77,7 @@ const AddElement = () => {
             <AccordionTrigger className={"!no-underline"}>
               Layout
             </AccordionTrigger>
-            <AccordionContent className={"flex flex-wrap gap-2"}>
+            <AccordionContent className={"grid grid-cols-4 gap-2"}>
               {elements
                 .filter((element) => element.group === "layout")
                 .map((element) => (
@@ -83,7 +89,7 @@ const AddElement = () => {
             <AccordionTrigger className={"!no-underline"}>
               Elements
             </AccordionTrigger>
-            <AccordionContent className={"flex flex-wrap gap-2"}>
+            <AccordionContent className={"grid grid-cols-4 gap-2"}>
               {elements
                 .filter((element) => element.group === "elements")
                 .map((element) => (

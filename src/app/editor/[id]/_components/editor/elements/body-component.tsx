@@ -51,13 +51,15 @@ const Container = ({ element }: Props) => {
           ))
         : null}
       <div
-        className={clsx("absolute inset-0 -z-10 cursor-none", {
-          "border-4 border-yellow-400":
-            state.editor.selectedElement.id === id && !state.editor.liveMode,
-          "border-solid":
-            state.editor.selectedElement.id === id && !state.editor.liveMode,
-          "border-state-300 border-[1px] border-dashed": !state.editor.liveMode,
-        })}
+        className={clsx(
+          "absolute inset-0 -z-10 cursor-none",
+          "border-state-300 border-[1px] border-dashed", // TODO: make this dynamic
+          {
+            "border-4 border-yellow-400":
+              state.editor.selectedElement.id === id,
+            "border-solid": state.editor.selectedElement.id === id,
+          },
+        )}
       ></div>
     </div>
   );

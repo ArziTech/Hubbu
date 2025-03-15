@@ -27,6 +27,8 @@ import {
 import Layout from "./layout";
 import Typography from "./typography";
 import Appearance from "./appearance";
+import Background from "./background";
+import Flex from "./flex";
 
 const ElementStyle = () => {
   const { state, dispatch } = useEditor();
@@ -47,6 +49,9 @@ const ElementStyle = () => {
             <Typography />
             <Layout />
             <Appearance />
+            {/*TODO: make this dynamic when the display properties is flex */}
+            <Flex />
+            <Background />
           </Accordion>
         ) : (
           <p>No element selected</p>

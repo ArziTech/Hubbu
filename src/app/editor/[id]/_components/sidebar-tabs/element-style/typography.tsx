@@ -17,6 +17,15 @@ import React from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/global/custom-icon";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
+  ArrowDownToLine,
+  ArrowUpToLine,
+  FoldVertical,
+} from "lucide-react";
 
 const Typography = () => {
   const { state, dispatch } = useEditor();
@@ -98,6 +107,73 @@ const Typography = () => {
               value={selectedElement.styles.width}
             />
           </div>
+        </div>
+        <div className="flex w-full gap-1">
+          <Tabs defaultValue="account" className="w-[400px]">
+            <TabsList className={"flex w-full justify-between gap-1"}>
+              <TabsTrigger
+                value="account"
+                className={
+                  "flex h-[28px] w-full items-center gap-2 rounded-lg border ps-2"
+                }
+              >
+                <AlignLeft size={12} />
+              </TabsTrigger>
+              <TabsTrigger
+                value="password"
+                className={
+                  "flex h-[28px] w-full items-center gap-2 rounded-lg border ps-2"
+                }
+              >
+                <AlignCenter size={12} />
+              </TabsTrigger>
+              <TabsTrigger
+                value="password"
+                className={
+                  "flex h-[28px] w-full items-center gap-2 rounded-lg border ps-2"
+                }
+              >
+                <AlignRight size={12} />
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <Tabs defaultValue="account" className="w-[400px]">
+            <TabsList className={"flex w-full justify-between gap-1"}>
+              <TabsTrigger
+                value="account"
+                className={
+                  "flex h-[28px] w-full items-center gap-2 rounded-lg border ps-2"
+                }
+              >
+                <ArrowUpToLine size={12} />
+              </TabsTrigger>
+              <TabsTrigger
+                value="password"
+                className={
+                  "flex h-[28px] w-full items-center gap-2 rounded-lg border ps-2"
+                }
+              >
+                <FoldVertical size={12} />
+              </TabsTrigger>
+              <TabsTrigger
+                value="password"
+                className={
+                  "flex h-[28px] w-full items-center gap-2 rounded-lg border ps-2"
+                }
+              >
+                <ArrowDownToLine size={12} />
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+        <div className="flex w-full items-center gap-2">
+          <Input
+            type={"color"}
+            className={
+              "aspect-square w-fit overflow-hidden rounded-md border-2 !p-0"
+            }
+          ></Input>
+          <span>#EEEEEE</span>
         </div>
       </AccordionContent>
     </AccordionItem>

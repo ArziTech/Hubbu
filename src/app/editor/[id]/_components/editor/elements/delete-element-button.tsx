@@ -20,7 +20,6 @@ const DeleteElementButton = ({ element }: Props) => {
 
   const shouldRenderButton =
     !state.editor.previewMode &&
-    !state.editor.liveMode &&
     state.editor.selectedElement.id === element.id &&
     element.type !== "__body";
 

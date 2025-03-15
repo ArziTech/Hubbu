@@ -42,7 +42,7 @@ const Sidebar = (props: Props) => {
           showX={false}
           side={"left"}
           className={
-            "w-25 z-40 mr-16 mt-[74px] h-full w-[400px] overflow-hidden bg-background p-0 shadow-none transition-all"
+            "w-25 z-40 mr-16 mt-[74px] h-full w-[400px] overflow-x-hidden overflow-y-scroll bg-background p-0 shadow-none transition-all"
           }
         >
           <TabContent />
