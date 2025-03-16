@@ -25,7 +25,7 @@ const TextComponent = (props: Props) => {
       draggable
       onClick={handleOnClickBody}
       className={clsx(
-        "relative w-full p-[2px] text-[16px] transition-all",
+        "!relative w-full p-[2px] text-[16px] transition-all",
         "border-[1px] border-dashed border-slate-300", // TODO: make this dynamic
         {
           "!border-solid border-blue-500":

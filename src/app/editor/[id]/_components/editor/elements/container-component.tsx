@@ -42,7 +42,7 @@ const ContainerComponent = ({ element }: Props) => {
     <div
       style={styles}
       className={clsx(
-        "group relative h-full w-full p-4 transition-all",
+        "group !relative h-full w-full transition-all",
         "border-state-300 border-[1px] border-dashed", // TODO: make it dynamic
         {
           "border-blue-500": state.editor.selectedElement.id === id,
@@ -51,7 +51,7 @@ const ContainerComponent = ({ element }: Props) => {
       )}
       onDrop={(e) => handleOnDrop(e, id, element, dispatch)}
       onDragOver={handleDragOver}
-      draggable={type !== "__body"}
+      draggable
       onDragStart={(e) => handleDragStart(e, "container")}
       onClick={handleOnClickBody}
     >

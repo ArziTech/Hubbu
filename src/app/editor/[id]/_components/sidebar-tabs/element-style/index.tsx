@@ -25,10 +25,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Layout from "./layout";
+import Text from "./text";
 import Typography from "./typography";
 import Appearance from "./appearance";
 import Background from "./background";
 import Flex from "./flex";
+import Link from "./link";
+import Video from "./video";
 
 const ElementStyle = () => {
   const { state, dispatch } = useEditor();
@@ -41,17 +44,19 @@ const ElementStyle = () => {
       </SheetHeader>
       <div className="ms-16 text-left text-black">
         {selectedElement !== nullElement ? (
-          <Accordion type="multiple">
+          <Accordion type="multiple" defaultValue={["layout"]}>
             {/* TODO:*/}
-            {/* Add src for video component */}
-            {/* Add Inner text for text component */}
-            {/* Add Inner text & href for link component */}
-            <Typography />
+            {selectedElement.type === "text" ? <Text /> : null}
+            {selectedElement.type === "link" ? <Link /> : null}
+            {selectedElement.type === "video" ? <Video /> : null}
+            {selectedElement.type === "text" ||
+            selectedElement.type === "link" ? (
+              <Typography />
+            ) : null}
             <Layout />
-            <Appearance />
-            {/*TODO: make this dynamic when the display properties is flex */}
-            <Flex />
-            <Background />
+            {/*<Appearance />*/}
+            {/*{selectedElement.styles.display === "flex" ? <Flex /> : null}*/}
+            {/*<Background />*/}
           </Accordion>
         ) : (
           <p>No element selected</p>

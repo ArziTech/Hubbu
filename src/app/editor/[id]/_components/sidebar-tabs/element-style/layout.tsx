@@ -24,8 +24,8 @@ const Layout = () => {
   return (
     <AccordionItem value="layout">
       <AccordionTrigger>Layout</AccordionTrigger>
-      <AccordionContent>
-        <div className="flex w-full gap-1">
+      <AccordionContent className={"space-y-3"}>
+        <div className="flex w-full">
           <div className={"flex items-center gap-2 rounded-lg border ps-2"}>
             <Label htmlFor={"width"} className={"text-gray-400"}>
               W
@@ -33,7 +33,17 @@ const Layout = () => {
             <Input
               name={"width"}
               className={"w-full border-none"}
-              value={selectedElement.styles.height}
+              value={selectedElement.styles.width || "100%"}
+              onChange={(e) =>
+                handleStyleChange(
+                  {
+                    id: "width",
+                    value: e.target.value,
+                  },
+                  selectedElement,
+                  dispatch,
+                )
+              }
             />
           </div>
           <div className={"flex items-center gap-2 rounded-lg border ps-2"}>
@@ -45,7 +55,19 @@ const Layout = () => {
               className={
                 "w-full !border-none focus:border-none active:border-none"
               }
-              value={selectedElement.styles.width}
+              value={selectedElement.styles.height} // TODO: fix when the user delete all the input
+              onChange={(e) => {
+                if (e.target.value) {
+                  handleStyleChange(
+                    {
+                      id: "height",
+                      value: e.target.value,
+                    },
+                    selectedElement,
+                    dispatch,
+                  );
+                }
+              }}
             />
           </div>
         </div>
@@ -75,16 +97,128 @@ const Layout = () => {
         </div>
         <div>
           <span>Padding</span>
-          <div className="flex w-full gap-2">
-            <Input placeholder={"0 px"} name={"padding-horizontal"}></Input>
-            <Input placeholder={"0 px"} name={"padding-vertical"}></Input>
+          <div className="mt-2 flex w-full gap-2">
+            <Input
+              name={"padding-bottom"}
+              value={selectedElement.styles.paddingBottom}
+              onChange={(e) => {
+                handleStyleChange(
+                  {
+                    id: "paddingBottom",
+                    value: `${e.target.value}`,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
+            />
+            <Input
+              name={"padding-right"}
+              value={selectedElement.styles.paddingRight}
+              onChange={(e) => {
+                handleStyleChange(
+                  {
+                    id: "paddingRight",
+                    value: `${e.target.value}`,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
+            />
+          </div>
+          <div className="mt-2 flex w-full gap-2">
+            <Input
+              name={"padding-top"}
+              value={selectedElement.styles.paddingTop}
+              onChange={(e) => {
+                handleStyleChange(
+                  {
+                    id: "paddingTop",
+                    value: `${e.target.value}`,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
+            />
+            <Input
+              name={"padding-left"}
+              value={selectedElement.styles.paddingLeft}
+              onChange={(e) => {
+                handleStyleChange(
+                  {
+                    id: "paddingLeft",
+                    value: `${e.target.value}`,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
+            />
           </div>
         </div>
         <div>
           <span>Margin</span>
-          <div className="flex w-full gap-2">
-            <Input placeholder={"0 px"} name={"margin-horizontal"}></Input>
-            <Input placeholder={"0 px"} name={"margin-vertical"}></Input>
+          <div className="mt-2 flex w-full gap-2">
+            <Input
+              name={"margin-bottom"}
+              value={selectedElement.styles.marginBottom}
+              onChange={(e) => {
+                handleStyleChange(
+                  {
+                    id: "marginBottom",
+                    value: `${e.target.value}`,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
+            />
+            <Input
+              name={"margin-right"}
+              value={selectedElement.styles.marginRight}
+              onChange={(e) => {
+                handleStyleChange(
+                  {
+                    id: "marginRight",
+                    value: `${e.target.value}`,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
+            />
+          </div>
+          <div className="mt-2 flex w-full gap-2">
+            <Input
+              name={"margin-top"}
+              value={selectedElement.styles.marginTop}
+              onChange={(e) => {
+                handleStyleChange(
+                  {
+                    id: "marginTop",
+                    value: `${e.target.value}`,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
+            />
+            <Input
+              name={"margin-left"}
+              value={selectedElement.styles.marginLeft}
+              onChange={(e) => {
+                handleStyleChange(
+                  {
+                    id: "marginLeft",
+                    value: `${e.target.value}`,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
+            />
           </div>
         </div>
         <div className="space-y-2">
@@ -145,8 +279,8 @@ const Layout = () => {
           </Select>
         </div>
         <div className="flex flex-col gap-4">
-          <Label className="text-muted-foreground">Opacity</Label>
-          <div className="flex items-center justify-end">
+          <div className={"flex items-center justify-between"}>
+            <Label className="text-muted-foreground">Opacity</Label>
             <small className="p-2">
               {typeof selectedElement.styles?.opacity === "number"
                 ? selectedElement.styles?.opacity

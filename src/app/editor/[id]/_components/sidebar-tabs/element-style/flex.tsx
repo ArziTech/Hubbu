@@ -56,7 +56,7 @@ const Flex = () => {
             <SelectContent>
               <SelectItem value="row">row</SelectItem>
               <SelectItem value="row-reverse">row reverse</SelectItem>
-              <SelectItem value="columng">column</SelectItem>
+              <SelectItem value="column">column</SelectItem>
               <SelectItem value="column-reverse">column reverse</SelectItem>
               <SelectItem value="initial">initial</SelectItem>
               <SelectItem value="inherit">inherit</SelectItem>

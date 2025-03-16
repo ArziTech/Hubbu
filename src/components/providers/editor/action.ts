@@ -33,13 +33,10 @@ export function UpdateAnElement(
   return editorArray.map((item) => {
     if (item.id === action.payload.elementDetails.id) {
       return {
-        id: action.payload.elementDetails.id,
-        content: { ...action.payload.elementDetails.content },
+        ...item,
         styles: {
           ...action.payload.elementDetails.styles,
         },
-        name: action.payload.elementDetails.name,
-        type: action.payload.elementDetails.type,
       };
     } else if (item.content && Array.isArray(item.content)) {
       return {

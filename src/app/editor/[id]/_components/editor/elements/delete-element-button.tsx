@@ -18,12 +18,12 @@ const DeleteElementButton = ({ element }: Props) => {
     });
   };
 
-  const shouldRenderButton =
+  const shouldntRenderButton =
     !state.editor.previewMode &&
-    state.editor.selectedElement.id === element.id &&
+    state.editor.selectedElement.id !== element.id &&
     element.type !== "__body";
 
-  if (!shouldRenderButton) return null;
+  if (shouldntRenderButton) return null;
 
   return (
     <div className="absolute -right-px -top-6 rounded-none rounded-t-lg bg-destructive px-2 py-1 text-xs font-bold">
