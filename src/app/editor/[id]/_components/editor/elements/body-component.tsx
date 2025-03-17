@@ -32,7 +32,7 @@ const Container = ({ element }: Props) => {
   return (
     <div
       style={styles}
-      className={"group relative h-full p-4 transition-all"}
+      className={"group relative h-full transition-all"}
       onDrop={(e) => handleOnDrop(e, id, element, dispatch)}
       onDragOver={handleDragOver}
       draggable={type !== "__body"}
@@ -47,7 +47,7 @@ const Container = ({ element }: Props) => {
         : null}
       <div
         className={clsx(
-          "absolute inset-0 -z-10 cursor-none",
+          "absolute inset-0 -z-10",
           "border-state-300 border-[1px] border-dashed", // TODO: make this dynamic
           {
             "border-4 border-yellow-400":

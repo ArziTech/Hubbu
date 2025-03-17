@@ -21,39 +21,37 @@ const Background = () => {
   const { state, dispatch } = useEditor();
   const { selectedElement } = state.editor;
   return (
-    <AccordionItem value="layout">
+    <AccordionItem value="background">
       <AccordionTrigger>Background</AccordionTrigger>
-      <AccordionContent>
-        <div className="flex w-full gap-1">
-          {/*  Background Image */}
-          {/*  Background color */}
-          {/*  Background size & repeat -> select */}
+      <AccordionContent className={"space-y-3"}>
+        <div className={"space-y-1"}>
+          <span>Color</span>
+          <div className="flex w-full items-center gap-2">
+            <Input
+              type={"color"}
+              className={
+                "aspect-square w-fit overflow-hidden rounded-md border-2 !p-0"
+              }
+              value={selectedElement.styles.backgroundColor}
+              onChange={(e) => {
+                handleStyleChange(
+                  {
+                    id: "backgroundColor",
+                    value: e.target.value,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
+            />
+            <span>{selectedElement.styles.backgroundColor?.toUpperCase()}</span>
+          </div>
         </div>
-        <div className="flex w-full items-center gap-2">
-          <Input
-            type={"color"}
-            className={
-              "aspect-square w-fit overflow-hidden rounded-md border-2 !p-0"
-            }
-            onChange={(e) => {
-              handleStyleChange(
-                {
-                  id: "backgroundColor",
-                  value: e.target.value,
-                },
-                selectedElement,
-                dispatch,
-              );
-            }}
-          />
-          <span>#EEEEEE</span>
-        </div>
-        <div className="space-y-2">
-          <span>Display</span>
+        <div className="space-y-1">
+          <span>Background Size</span>
           <Select
-            defaultValue={
-              selectedElement.styles.backgroundSize?.toString() || "auto"
-            }
+            defaultValue={"auto"}
+            value={selectedElement.styles.backgroundSize?.toString()}
             onValueChange={(e) =>
               handleStyleChange(
                 { id: "backgroundSize", value: e },
@@ -63,9 +61,7 @@ const Background = () => {
             }
           >
             <SelectTrigger className="w-full">
-              {/* TODO: Change this into selected current */}
-
-              <SelectValue placeholder="display" />
+              <SelectValue />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="auto">auto</SelectItem>
@@ -76,18 +72,21 @@ const Background = () => {
           </Select>
         </div>
         {/* TODO: Change this into real button*/}
-        <div className="grid w-full place-content-center rounded-md bg-primary py-2 text-white">
-          Select an Image
+        <div className="space-y-1">
+          <span>Image</span>
+          <div className="grid w-full place-content-center rounded-md bg-primary py-2 text-white">
+            Select an Image
+          </div>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           <span>Repeat</span>
           <Select
-            defaultValue={
+            value={
               selectedElement.styles.backgroundRepeat?.toString() || "repeat"
             }
             onValueChange={(e) =>
               handleStyleChange(
-                { id: "backgroundCover", value: e },
+                { id: "backgroundRepeat", value: e },
                 selectedElement,
                 dispatch,
               )

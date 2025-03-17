@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/select";
 import { handleStyleChange } from "@/components/providers/editor/events";
 import { Slider } from "@/components/ui/slider";
-
+import { Icons } from "@/components/global/custom-icon";
 const Layout = () => {
   const { state, dispatch } = useEditor();
   const { selectedElement } = state.editor;
@@ -159,11 +159,15 @@ const Layout = () => {
           </div>
         </div>
         <div>
-          <span>Margin</span>
+          <div className="flex items-center">
+            <span>Margin</span>
+            <Icons.margin className={"ms-4 size-4 !fill-[#7E7E7E]"} />
+          </div>
           <div className="mt-2 flex w-full gap-2">
             <Input
               name={"margin-bottom"}
               value={selectedElement.styles.marginBottom}
+              className={"focus-visible:ring-0"}
               onChange={(e) => {
                 handleStyleChange(
                   {
@@ -224,7 +228,8 @@ const Layout = () => {
         <div className="space-y-2">
           <span>Display</span>
           <Select
-            defaultValue={selectedElement.styles.zIndex?.toString() || "block"}
+            defaultValue={"block"}
+            value={selectedElement.styles.display}
             onValueChange={(e) =>
               handleStyleChange(
                 { id: "display", value: e },
@@ -234,8 +239,6 @@ const Layout = () => {
             }
           >
             <SelectTrigger className="w-full">
-              {/* TODO: Change this into selected current */}
-
               <SelectValue placeholder="display" />
             </SelectTrigger>
             <SelectContent>
@@ -249,20 +252,19 @@ const Layout = () => {
         <div className="space-y-2">
           <span>Overflow</span>
           <Select
-            defaultValue={
-              selectedElement.styles.zIndex?.toString() || "visible"
-            }
+            defaultValue={"visible"}
+            value={selectedElement.styles.overflow}
             onValueChange={(e) => {
               handleStyleChange(
-                { id: "overflowX", value: e },
+                { id: "overflow", value: e },
                 selectedElement,
                 dispatch,
               );
-              handleStyleChange(
-                { id: "overflowY", value: e },
-                selectedElement,
-                dispatch,
-              );
+              // handleStyleChange(
+              //   { id: "overflowY", value: e },
+              //   selectedElement,
+              //   dispatch,
+              // );
             }}
           >
             <SelectTrigger className="w-full">

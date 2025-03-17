@@ -38,10 +38,10 @@ const Editor = ({ websiteId }: Props) => {
       });
     };
     fetchData();
-  }, [websiteId]);
+  }, [dispatch, websiteId]);
 
   return (
-    <div className={"mt-[74px] h-full w-[calc(100%-400px)]"}>
+    <div className={"h-[100% - 74px] mt-[74px] w-[calc(100%-400px)]"}>
       <ContextMenu>
         <ContextMenuTrigger>
           {Array.isArray(state.editor.elements)
