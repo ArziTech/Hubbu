@@ -246,6 +246,9 @@ const Layout = () => {
               <SelectItem value="hidden">hidden</SelectItem>
               <SelectItem value="flex">flex</SelectItem>
               <SelectItem value="inline">inline</SelectItem>
+              <SelectItem value="flex" disabled>
+                grid (coming soon)
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>

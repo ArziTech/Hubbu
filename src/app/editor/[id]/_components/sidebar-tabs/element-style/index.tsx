@@ -55,7 +55,7 @@ const ElementStyle = () => {
             ) : null}
             <Layout />
             {/*<Appearance />*/}
-            {/*{selectedElement.styles.display === "flex" ? <Flex /> : null}*/}
+            {selectedElement.styles.display === "flex" ? <Flex /> : null}
             <Background />
           </Accordion>
         ) : (

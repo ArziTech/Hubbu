@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/global/custom-icon";
@@ -26,10 +26,23 @@ import {
   ArrowUpToLine,
   FoldVertical,
 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { getAllFonts } from "@/actions/google-font";
+import { handleStyleChange } from "@/components/providers/editor/events";
 
 const Typography = () => {
   const { state, dispatch } = useEditor();
   const { selectedElement } = state.editor;
+
+  const { data: result } = useQuery({
+    queryKey: ["google-font"],
+    queryFn: getAllFonts,
+  });
+
+  if (!result?.data || result.status === "ERROR") {
+    console.log({ result });
+  }
+
   const handleValueChange = (value: string) => {
     dispatch({
       type: "UPDATE_ELEMENT",
@@ -49,19 +62,80 @@ const Typography = () => {
     <AccordionItem value="typography">
       <AccordionTrigger>Typography</AccordionTrigger>
       <AccordionContent className={"space-y-1"}>
-        <Select onValueChange={handleValueChange}>
+        <Select
+          onValueChange={async (value) => {
+            if (!result || !result.data) return;
+
+            const findFile = result.data.find(
+              (font): boolean => font.family === value,
+            );
+
+            if (!findFile) return;
+
+            // TODO: check here. if the selected font has current active font variant
+            // If it doesn't hava, then change the font variant
+            const fontVariant =
+              // selectedElement.styles.fontVariant?.toString() ||
+              "regular";
+
+            // console.log(findFile);
+            // return;
+            const fontFile = findFile.files[fontVariant];
+
+            console.log(`font file : ${fontFile}`);
+
+            const font = new FontFace(value, `url(${fontFile})`);
+            const loadedFont = await font.load();
+            document.fonts.add(loadedFont);
+
+            console.log("this is font");
+            console.log({ font });
+
+            dispatch({
+              type: "UPDATE_ELEMENT",
+              payload: {
+                elementDetails: {
+                  ...selectedElement,
+                  styles: {
+                    fontFamily: value,
+                  },
+                },
+              },
+            });
+          }}
+          value={selectedElement.styles.fontFamily}
+          defaultValue={"poppins"}
+        >
           <SelectTrigger className="w-full">
             {/* TODO: Change this into selected element font */}
             <SelectValue placeholder="Font Family" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="poppins">Poppins</SelectItem>
-            <SelectItem value="nova-square">Nova Square</SelectItem>
-            <SelectItem value="inter">Inter</SelectItem>
+            {/*<SelectItem value="poppins">Poppins</SelectItem>*/}
+            {/*<SelectItem value="nova-square">Nova Square</SelectItem>*/}
+            {/*<SelectItem value="inter">Inter</SelectItem>*/}
+            {result?.data?.map((font, index) => (
+              <SelectItem key={index} value={font.family}>
+                {font.family}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
         <div className="flex gap-1">
-          <Select onValueChange={handleValueChange}>
+          <Select
+            onValueChange={(value) =>
+              handleStyleChange(
+                {
+                  id: "fontWeight",
+                  value: value,
+                },
+                selectedElement,
+                dispatch,
+              )
+            }
+            defaultValue={"100"}
+            value={selectedElement.styles.fontWeight?.toString()}
+          >
             <SelectTrigger className="w-full">
               {/* TODO: Change this into selected element font */}
               <SelectValue placeholder="Font Family" />
@@ -72,7 +146,18 @@ const Typography = () => {
               <SelectItem value="black">Black</SelectItem>
             </SelectContent>
           </Select>
-          <Select onValueChange={handleValueChange}>
+          <Select
+            onValueChange={(value) =>
+              handleStyleChange(
+                {
+                  id: "fontSize",
+                  value: value,
+                },
+                selectedElement,
+                dispatch,
+              )
+            }
+          >
             <SelectTrigger className="w-full">
               {/* TODO: Change this into selected element font */}
               <SelectValue placeholder="Font Size" />
@@ -93,6 +178,16 @@ const Typography = () => {
               name={"line-height"}
               className={"w-full border-none"}
               value={selectedElement.styles.height}
+              onChange={(event) => {
+                handleStyleChange(
+                  {
+                    id: "lineHeight",
+                    value: event.target.value,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
             />
           </div>
           <div className={"flex items-center gap-2 rounded-lg border ps-2"}>
@@ -105,11 +200,30 @@ const Typography = () => {
                 "w-full !border-none focus:border-none active:border-none"
               }
               value={selectedElement.styles.width}
+              onChange={(event) => {
+                handleStyleChange(
+                  {
+                    id: "letterSpacing",
+                    value: event.target.value,
+                  },
+                  selectedElement,
+                  dispatch,
+                );
+              }}
             />
           </div>
         </div>
         <div className="flex w-full gap-1">
-          <Tabs defaultValue="account" className="w-[400px]">
+          <Tabs
+            defaultValue="account"
+            className="w-[400px]"
+            onChange={(event) => {
+              // handleStyleChange({
+              //   id: 'alignLeft'
+              //   value: event.target.ge
+              // })
+            }}
+          >
             <TabsList className={"flex w-full justify-between gap-1"}>
               <TabsTrigger
                 value="account"

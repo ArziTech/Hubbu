@@ -43,7 +43,6 @@ const TextComponent = (props: Props) => {
         contentEditable={true}
         onBlur={(e) => {
           const spanElement = e.target as HTMLSpanElement;
-          console.log(spanElement.innerText);
           dispatch({
             type: "UPDATE_ELEMENT",
             payload: {

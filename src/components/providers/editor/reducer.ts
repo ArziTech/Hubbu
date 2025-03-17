@@ -43,9 +43,6 @@ export const editorReducer = (
     case "UPDATE_ELEMENT": {
       const updatedElements = UpdateAnElement(state.editor.elements, action);
 
-      console.log(`update: `);
-      console.log(updatedElements);
-
       const updateElementIsSelected =
         state.editor.selectedElement.id === action.payload.elementDetails.id;
 
