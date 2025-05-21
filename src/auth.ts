@@ -4,7 +4,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 
 import authConfig from "@/auth.config";
-import { getUserById } from "@/actions/user";
+import { getUserById, setUsername } from "@/actions/user";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
@@ -32,11 +32,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     // async redirect({ url, baseUrl }) {
     //   return baseUrl;
     // },
+
     async session({ session, token }) {
       session.user = token.user;
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
+      if (trigger === "signUp") {
+        // @ts-expect-error this is okay
+        if (!user.username) {
+          const random2DigitNumber = Math.floor(Math.random() * 90) + 10;
+          const defaultUsername = `${user.name}${random2DigitNumber}`;
+          await setUsername(user.id as string, defaultUsername);
+          // 08227856490
+        }
+      }
       if (user) {
         token.user = user;
       }

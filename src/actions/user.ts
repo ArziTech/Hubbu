@@ -3,6 +3,7 @@ import { Prisma, User } from "@prisma/client";
 import { ActionResponse } from "@/lib/types";
 import { prisma } from "@/lib/prisma";
 import UserCreateInput = Prisma.UserCreateInput;
+import UserUpdateInput = Prisma.UserUpdateInput;
 
 export async function createUser(
   input: UserCreateInput,
@@ -22,6 +23,7 @@ export async function createUser(
     return { status: "ERROR", error: "Something went wrong" };
   }
 }
+
 export async function getUserById(id: string): Promise<ActionResponse<User>> {
   try {
     const user = await prisma.user.findUnique({ where: { id } });
@@ -128,5 +130,28 @@ export async function deleteManyUserByID(
     }
     // @ts-expect-error should be okay
     return { status: "ERROR", error: err.toString() };
+  }
+}
+
+export async function setUsername(
+  userId: string,
+  username: string,
+): Promise<ActionResponse<User>> {
+  try {
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data: { username },
+    });
+
+    if (!user) return { status: "ERROR", error: "User doesn't exist" };
+
+    return {
+      status: "SUCCESS",
+      success: "Success setting new username",
+      data: user,
+    };
+  } catch {
+    // console.log(error);
+    return { status: "ERROR", error: "Something went wrong" };
   }
 }

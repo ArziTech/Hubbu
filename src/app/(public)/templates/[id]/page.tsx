@@ -58,7 +58,11 @@ async function Page({ params }: { params: Promise<{ id: string }> }) {
 
             <div className={"flex w-full gap-4"}>
               {/* TODO */}
-              <Button className={"w-full"}>Use this template</Button>
+              <Button asChild className={"w-full"}>
+                <Link href={`/transactions/${template.id}`}>
+                  Buy this template
+                </Link>
+              </Button>
               <Button asChild className={"w-full"}>
                 <Link href={`/preview/${template.id}`}>Preview</Link>
               </Button>

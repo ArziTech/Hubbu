@@ -23,6 +23,27 @@ export async function getAllTemplateCategories(): Promise<
   }
 }
 
+export async function getTemplateCategoryTitle(
+  templateId: string,
+): Promise<ActionResponse<{ title: string }>> {
+  try {
+    const category = await prisma.templateCategory.findUnique({
+      where: { id: templateId },
+      select: { title: true },
+    });
+
+    if (!category) return { status: "ERROR", error: "Category doesn't exist" };
+
+    return {
+      status: "SUCCESS",
+      success: "Success fetching the category title",
+      data: category,
+    };
+  } catch {
+    return { status: "ERROR", error: "Something went wrong" };
+  }
+}
+
 // *DELETE
 export async function deleteManyTemplateCategoriesByID(
   ids: string[],

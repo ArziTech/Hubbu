@@ -6,7 +6,6 @@ import {
   GetTemplateReturn,
   getTemplates,
 } from "@/actions/template";
-import { useQuery } from "react-query";
 import { ActionResponse } from "@/lib/types";
 
 const Templates = ({

@@ -1,6 +1,11 @@
 "use server";
 import { ActionResponse } from "@/lib/types";
-import { Prisma, Template, TemplateStatus } from "@prisma/client";
+import {
+  Prisma,
+  Template,
+  TemplateCategory,
+  TemplateStatus,
+} from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 // *GET ALL Template
@@ -13,6 +18,25 @@ export async function getAllTemplates(): Promise<ActionResponse<Template[]>> {
       status: "SUCCESS",
       success: "Successfully fetching Templates",
       data: allTemplates,
+    };
+  } catch {
+    return { status: "ERROR", error: "Something went wrong" };
+  }
+}
+
+export async function getTemplateById(
+  templateId: string,
+): Promise<ActionResponse<Template>> {
+  try {
+    const template = await prisma.template.findUnique({
+      where: { id: templateId },
+    });
+    if (!template) return { status: "ERROR", error: "Templates not found" };
+
+    return {
+      status: "SUCCESS",
+      success: "Successfully fetching Templates",
+      data: template,
     };
   } catch {
     return { status: "ERROR", error: "Something went wrong" };
