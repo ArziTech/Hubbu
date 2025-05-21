@@ -28,6 +28,7 @@ export function checkDevelopmentRoute(route: string): boolean {
  */
 export const publicRoutes: string[] = [
   "/",
+  "/input-html",
   "/reset-password",
   "/unauthorized",
   "/not-found",

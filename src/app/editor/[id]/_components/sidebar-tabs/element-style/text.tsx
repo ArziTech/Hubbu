@@ -15,7 +15,26 @@ const Text = () => {
     <AccordionItem value="appearance">
       <AccordionTrigger>Text</AccordionTrigger>
       <AccordionContent>
-        <Input className={"w-full"}></Input>
+        {!Array.isArray(selectedElement.content) ? (
+          <Input
+            className={"w-full"}
+            value={selectedElement.content.innerText}
+            onChange={(e) => {
+              dispatch({
+                type: "UPDATE_ELEMENT",
+                payload: {
+                  elementDetails: {
+                    ...selectedElement,
+                    content: {
+                      ...selectedElement.content,
+                      innerText: e.target.value,
+                    },
+                  },
+                },
+              });
+            }}
+          />
+        ) : null}
       </AccordionContent>
     </AccordionItem>
   );

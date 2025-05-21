@@ -2,16 +2,35 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, LaptopMinimal, Send, Smartphone } from "lucide-react";
 import Navbar from "@/app/preview/[id]/_components/navbar";
+import { getWebsiteById } from "@/actions/website";
+import Recursive from "@/app/editor/[id]/_components/editor/recursive";
+import Editor from "@/app/editor/[id]/_components/editor";
+import {
+  EditorProvider,
+  useEditor,
+} from "@/components/providers/editor/context";
+import Preview from "@/app/preview/[id]/_components/preview";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
   // check the templates here
   // TODO
 
+  const fetchWebsite = await getWebsiteById(id);
+  if (!fetchWebsite || fetchWebsite.status === "ERROR" || !fetchWebsite.data) {
+    console.log({ fetchWebsite });
+    // TODO
+    return null;
+  }
+
+  const websiteContent = fetchWebsite.data.content;
+
   return (
     <div className={"h-full"}>
-      <Navbar />
-      <div className={"grid h-full place-content-center"}>{id}</div>
+      {/*<Navbar />*/}
+      <EditorProvider websiteId={id} websiteDetails={fetchWebsite.data}>
+        <Preview websiteId={fetchWebsite.data.id}></Preview>
+      </EditorProvider>
     </div>
   );
 };

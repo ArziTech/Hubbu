@@ -29,33 +29,20 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { getAllFonts } from "@/actions/google-font";
 import { handleStyleChange } from "@/components/providers/editor/events";
+import { fonts } from "@/constant/google-font";
 
 const Typography = () => {
   const { state, dispatch } = useEditor();
   const { selectedElement } = state.editor;
 
-  const { data: result } = useQuery({
-    queryKey: ["google-font"],
-    queryFn: getAllFonts,
-  });
-
-  if (!result?.data || result.status === "ERROR") {
-    console.log({ result });
-  }
-
-  const handleValueChange = (value: string) => {
-    dispatch({
-      type: "UPDATE_ELEMENT",
-      payload: {
-        elementDetails: {
-          ...selectedElement,
-          styles: {
-            fontFamily: value,
-          },
-        },
-      },
-    });
-  };
+  // const { data: result } = useQuery({
+  //   queryKey: ["google-font"],
+  //   queryFn: getAllFonts,
+  // });
+  //
+  // if (!result?.data || result.status === "ERROR") {
+  //   console.log({ result });
+  // }
 
   return (
     /* TODO: Check if it's an text element */
@@ -64,33 +51,40 @@ const Typography = () => {
       <AccordionContent className={"space-y-1"}>
         <Select
           onValueChange={async (value) => {
-            if (!result || !result.data) return;
+            console.time("Total Execution Time");
 
-            const findFile = result.data.find(
+            // if (!result || !result.data) {
+            //   console.timeEnd("Total Execution Time");
+            //   return;
+            // }
+
+            console.time("Find File");
+            const findFile = fonts.find(
               (font): boolean => font.family === value,
             );
+            console.timeEnd("Find File");
 
-            if (!findFile) return;
+            if (!findFile) {
+              console.timeEnd("Total Execution Time");
+              return;
+            }
 
             // TODO: check here. if the selected font has current active font variant
-            // If it doesn't hava, then change the font variant
+            // If it doesn't have, then change the font variant
             const fontVariant =
-              // selectedElement.styles.fontVariant?.toString() ||
-              "regular";
+              selectedElement.styles.fontVariant?.toString() || "regular";
 
-            // console.log(findFile);
-            // return;
+            console.time("Find Font File");
             const fontFile = findFile.files[fontVariant];
+            console.timeEnd("Find Font File");
 
-            console.log(`font file : ${fontFile}`);
-
+            console.time("Load Font");
             const font = new FontFace(value, `url(${fontFile})`);
             const loadedFont = await font.load();
             document.fonts.add(loadedFont);
+            console.timeEnd("Load Font");
 
-            console.log("this is font");
-            console.log({ font });
-
+            console.time("Dispatch Update");
             dispatch({
               type: "UPDATE_ELEMENT",
               payload: {
@@ -102,19 +96,22 @@ const Typography = () => {
                 },
               },
             });
+            console.timeEnd("Dispatch Update");
+
+            console.timeEnd("Total Execution Time");
           }}
           value={selectedElement.styles.fontFamily}
           defaultValue={"poppins"}
         >
           <SelectTrigger className="w-full">
             {/* TODO: Change this into selected element font */}
-            <SelectValue placeholder="Font Family" />
+            <SelectValue placeholder="Font Family" defaultValue={"poppins"} />
           </SelectTrigger>
           <SelectContent>
             {/*<SelectItem value="poppins">Poppins</SelectItem>*/}
             {/*<SelectItem value="nova-square">Nova Square</SelectItem>*/}
             {/*<SelectItem value="inter">Inter</SelectItem>*/}
-            {result?.data?.map((font, index) => (
+            {fonts.map((font, index) => (
               <SelectItem key={index} value={font.family}>
                 {font.family}
               </SelectItem>
