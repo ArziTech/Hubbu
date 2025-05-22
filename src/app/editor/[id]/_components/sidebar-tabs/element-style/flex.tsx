@@ -77,7 +77,7 @@ const Flex = () => {
           <Tabs
             defaultValue="account"
             className="w-full"
-            onChange={(e) => {
+            onChange={() => {
               return;
               // handleStyleChange({
               //   id: "justifyContent",
@@ -127,7 +127,7 @@ const Flex = () => {
           <Tabs
             defaultValue="account"
             className="w-full"
-            onChange={(e) => {
+            onChange={() => {
               return;
               // handleStyleChange({
               //   id: "justifyContent",

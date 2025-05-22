@@ -1,14 +1,6 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, LaptopMinimal, Send, Smartphone } from "lucide-react";
-import Navbar from "@/app/preview/[id]/_components/navbar";
 import { getWebsiteById } from "@/actions/website";
-import Recursive from "@/app/editor/[id]/_components/editor/recursive";
-import Editor from "@/app/editor/[id]/_components/editor";
-import {
-  EditorProvider,
-  useEditor,
-} from "@/components/providers/editor/context";
+import { EditorProvider } from "@/components/providers/editor/context";
 import Preview from "@/app/preview/[id]/_components/preview";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -23,7 +15,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     return null;
   }
 
-  const websiteContent = fetchWebsite.data.content;
+  // const websiteContent = fetchWebsite.data.content;
 
   return (
     <div className={"h-full"}>

@@ -20,7 +20,7 @@ interface MidtransParameters {
     name: string;
     category: string;
     merchant_name?: string;
-    url: string;
+    url?: string;
   }[];
   customer_details: {
     first_name: string;
@@ -96,19 +96,20 @@ export async function createTransaction(
       data: { token, redirect_url: redirect_url },
     };
   } catch (error) {
-    if (error.httpStatusCode) {
-      switch (error.httpStatusCode) {
-        case 400:
-          break;
-        case 401:
-          break;
-        case 500:
-          break;
-      }
-    }
+    // if (error.httpStatusCode) {
+    //   switch (error.httpStatusCode) {
+    //     case 400:
+    //       break;
+    //     case 401:
+    //       break;
+    //     case 500:
+    //       break;
+    //   }
+    // }
     return {
       status: "ERROR",
-      message: error.message,
+      // @ts-expect-error this should be okay
+      message: error.message || "Something went wrong",
     };
   }
 }

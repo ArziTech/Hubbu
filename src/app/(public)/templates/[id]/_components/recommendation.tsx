@@ -18,7 +18,7 @@ const Recommendation = () => {
     sortBy,
   };
 
-  const { data: templates, isFetching } = useQuery({
+  const { data: templates } = useQuery({
     queryKey: ["products", perPage, category, sortBy, rating],
     queryFn: () => getTemplates(params),
     initialData: {

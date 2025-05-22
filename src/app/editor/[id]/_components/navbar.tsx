@@ -1,7 +1,6 @@
 "use client";
-import React, { FocusEventHandler, useEffect, useTransition } from "react";
+import React, { useEffect, useTransition } from "react";
 import { Website } from "@prisma/client";
-import { useRouter } from "next/navigation";
 import { useEditor } from "@/components/providers/editor/context";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +21,6 @@ interface Props {
   websiteDetails: Website;
 }
 const Navbar = ({ websiteDetails }: Props) => {
-  const router = useRouter();
   const { state, dispatch } = useEditor();
   const [isPending, startTransition] = useTransition();
 

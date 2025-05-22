@@ -1,22 +1,17 @@
 "use client";
-import {
-  defaultStyles,
-  EditorElement,
-  EditorElementType,
-} from "@/components/providers/editor";
+import { EditorElement } from "@/components/providers/editor";
 import ElementBadge from "./element-badge";
 import Recursive from "@/app/editor/[id]/_components/editor/recursive";
 import DeleteElementButton from "./delete-element-button";
 import { useEditor } from "@/components/providers/editor/context";
 import { clsx } from "clsx";
-import { v4 as uuidv4 } from "uuid";
 import { handleOnDrop } from "@/components/providers/editor/events";
 type Props = {
   element: EditorElement;
 };
 
 const ContainerComponent = ({ element }: Props) => {
-  const { styles, type, id } = element;
+  const { styles, id } = element;
   const { state, dispatch } = useEditor();
   const { name, content } = element;
 

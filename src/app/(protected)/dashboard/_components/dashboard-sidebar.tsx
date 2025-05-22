@@ -4,7 +4,7 @@ import React, {
   ReactNode,
   RefAttributes,
 } from "react";
-import { Lock, UserCircle, LucideProps, ChevronDown } from "lucide-react";
+import { UserCircle, LucideProps, ChevronDown } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -31,7 +31,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogOutButton from "@/components/global/log-out-button";
 import {
-  ADMIN_SIDEBAR,
+  // ADMIN_SIDEBAR,
   PROFILE_SIDEBAR,
 } from "@/app/(protected)/dashboard/_constant";
 import { SidebarDropdownFooter } from "@/app/(protected)/dashboard/_components/sidebar-dropdown-footer";
@@ -161,13 +161,13 @@ export function DashboardSidebar({ user }: { user: User }) {
         />
 
         {/* TODO: This is temporary */}
-        {(user.role === "ADMIN" || true) && (
-          <CollapsibleMenuGroup
-            MenuIcon={Lock}
-            items={ADMIN_SIDEBAR}
-            label={"Admin"}
-          />
-        )}
+        {/*{user === "ADMIN" && (*/}
+        {/*  <CollapsibleMenuGroup*/}
+        {/*    MenuIcon={Lock}*/}
+        {/*    items={ADMIN_SIDEBAR}*/}
+        {/*    label={"Admin"}*/}
+        {/*  />*/}
+        {/*)}*/}
       </SidebarContent>
       <SidebarDropdownFooter
         username={user.name as string}

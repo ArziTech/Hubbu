@@ -8,7 +8,6 @@ import {
   Ellipsis,
   GalleryVerticalEnd,
   Highlighter,
-  Image as ImageIcon,
   Images,
   Layers,
   LayoutList,

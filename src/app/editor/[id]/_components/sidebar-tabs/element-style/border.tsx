@@ -5,11 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useEditor } from "@/components/providers/editor/context";
 
 const Border = () => {
-  const { state } = useEditor();
-  const { selectedElement } = state.editor;
   return (
     <AccordionItem value="border">
       <AccordionTrigger>Border</AccordionTrigger>

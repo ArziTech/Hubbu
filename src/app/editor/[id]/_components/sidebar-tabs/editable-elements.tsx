@@ -7,8 +7,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useEditor } from "@/components/providers/editor/context";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { EditorElement } from "@/components/providers/editor";
 import { Triangle, Type } from "lucide-react";
@@ -51,7 +49,7 @@ const ElementLabel = ({
 };
 
 const EditableElements = () => {
-  const { state, dispatch } = useEditor();
+  const { state } = useEditor();
   return (
     <TabsContent value={"editable-elements"}>
       <SheetHeader className={"ms-16 ps-4 text-left"}>

@@ -5,7 +5,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useEditor } from "@/components/providers/editor/context";
 import { handleStyleChange } from "@/components/providers/editor/events";

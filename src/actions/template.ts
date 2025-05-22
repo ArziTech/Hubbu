@@ -1,11 +1,6 @@
 "use server";
 import { ActionResponse } from "@/lib/types";
-import {
-  Prisma,
-  Template,
-  TemplateCategory,
-  TemplateStatus,
-} from "@prisma/client";
+import { Prisma, Template, TemplateStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 // *GET ALL Template

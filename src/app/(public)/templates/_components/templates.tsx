@@ -1,11 +1,6 @@
 import React from "react";
 import TemplateCard from "@/components/global/template-card";
-import { useSearchParams } from "next/navigation";
-import {
-  GetTemplateParams,
-  GetTemplateReturn,
-  getTemplates,
-} from "@/actions/template";
+import { GetTemplateReturn } from "@/actions/template";
 import { ActionResponse } from "@/lib/types";
 
 const Templates = ({

@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import hero from "@/public/images/hero.png";
-import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
 
 const Hero = () => {
   return (

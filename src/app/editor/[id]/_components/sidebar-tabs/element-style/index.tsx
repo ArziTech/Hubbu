@@ -8,33 +8,17 @@ import {
 } from "@/components/ui/sheet";
 import { useEditor } from "@/components/providers/editor/context";
 import { nullElement } from "@/components/providers/editor";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Slider } from "@/components/ui/slider";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Accordion } from "@/components/ui/accordion";
 import Layout from "./layout";
 import Text from "./text";
 import Typography from "./typography";
-import Appearance from "./appearance";
 import Background from "./background";
 import Flex from "./flex";
 import Link from "./link";
 import Video from "./video";
 
 const ElementStyle = () => {
-  const { state, dispatch } = useEditor();
+  const { state } = useEditor();
   const selectedElement = state.editor.selectedElement;
   return (
     <TabsContent value={"element-style"} className={"mx-4"}>

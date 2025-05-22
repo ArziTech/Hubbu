@@ -9,8 +9,9 @@ import { useSearchParams } from "next/navigation";
 import { GetTemplateParams, getTemplates } from "@/actions/template";
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "@/app/(public)/templates/_components/pagination";
+import { Suspense } from "react";
 
-const TemplateList = () => {
+function TemplateListContent() {
   const searchParams = useSearchParams();
   const search = searchParams.get("search") || "";
   const perPage = searchParams.get("perPage") || "10";
@@ -37,6 +38,7 @@ const TemplateList = () => {
   });
 
   if (!templates || templates.status === "ERROR") return null;
+
   return (
     <div className={"flex w-full flex-col"}>
       <div className={"mb-4 flex w-full items-center justify-between"}>
@@ -89,5 +91,23 @@ const TemplateList = () => {
       )}
     </div>
   );
+}
+
+const TemplateList = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex w-full flex-col">
+          <div className="mb-4 flex w-full items-center justify-between">
+            <LoadingAnimation className="text-base font-normal text-muted-foreground" />
+          </div>
+          <Loader className="relative col-span-1 mx-auto animate-spin tablet:col-span-2 desktop:col-span-3" />
+        </div>
+      }
+    >
+      <TemplateListContent />
+    </Suspense>
+  );
 };
+
 export default TemplateList;

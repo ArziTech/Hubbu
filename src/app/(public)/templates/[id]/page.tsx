@@ -1,7 +1,7 @@
 import React from "react";
 import { GetTemplateById } from "@/actions/template";
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
-import { Images, Star } from "lucide-react";
+import { Images } from "lucide-react";
 import Rating from "@/components/global/rating";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

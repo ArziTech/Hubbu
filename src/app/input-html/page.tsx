@@ -1,6 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
+
+// @ts-expect-error i don't know why
 import { HTMLToJSON, JSONToHTML } from "html-to-json-parser"; // ES6
 
 const InputFile = () => {
@@ -19,8 +21,6 @@ const InputFile = () => {
       setFileContent(content);
       console.log(content);
 
-      const element =
-        "<div><ul><li>Hello <strong>World</strong></li></ul></div>";
       const json = await HTMLToJSON(content, true);
 
       setGeneratedJson(json);

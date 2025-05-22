@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
-import { Quote, Star } from "lucide-react";
+import { Quote } from "lucide-react";
 import Rating from "@/components/global/rating";
 
 interface Testimoni {

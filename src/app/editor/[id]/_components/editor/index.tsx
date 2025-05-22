@@ -3,12 +3,7 @@ import React, { useEffect } from "react";
 import { useEditor } from "@/components/providers/editor/context";
 import { getWebsiteElementsById } from "@/actions/website";
 import Recursive from "@/app/editor/[id]/_components/editor/recursive";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
+import { ContextMenu, ContextMenuTrigger } from "@/components/ui/context-menu";
 import RightClickOptions from "./right-click-options";
 
 interface Props {

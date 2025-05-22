@@ -1,9 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Image from "next/image";
-import google from "@/public/logo/google.svg";
 import Link from "next/link";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";

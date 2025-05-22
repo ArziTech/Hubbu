@@ -4,7 +4,7 @@ import notFoundImage from "@/public/images/not-found.png";
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowBigLeft, House } from "lucide-react";
+import { House } from "lucide-react";
 import BackButton from "@/components/global/back-button";
 
 const NotFound = () => {

@@ -5,9 +5,11 @@ export interface GoogleFontType {
   menu: string;
   variants: string[];
   version: string;
-  axes: string;
+  axes?: string;
+  category: string;
   lastModified: string;
   files: { [key: string]: string };
+  colorCapabilities?: string[];
 }
 
 export const fonts: GoogleFontType[] = [

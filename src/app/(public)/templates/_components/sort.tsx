@@ -1,8 +1,6 @@
 import React from "react";
 import { useQueryState } from "nuqs";
-import { useQuery } from "react-query";
-import { getAllTemplateCategories } from "@/actions/template-category";
-import { ArrowDownUp, LibraryBig } from "lucide-react";
+import { ArrowDownUp } from "lucide-react";
 import Select from "@/app/(public)/templates/_components/select";
 
 const Rating = () => {

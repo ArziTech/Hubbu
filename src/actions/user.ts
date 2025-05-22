@@ -3,7 +3,6 @@ import { Prisma, User } from "@prisma/client";
 import { ActionResponse } from "@/lib/types";
 import { prisma } from "@/lib/prisma";
 import UserCreateInput = Prisma.UserCreateInput;
-import UserUpdateInput = Prisma.UserUpdateInput;
 
 export async function createUser(
   input: UserCreateInput,

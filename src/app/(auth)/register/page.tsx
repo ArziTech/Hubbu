@@ -1,5 +1,4 @@
 import React from "react";
-import { LoginForm } from "@/components/login-form";
 import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
 import hubbu from "@/public/logo/hubbu-horizontal-white.svg";
 import Image from "next/image";

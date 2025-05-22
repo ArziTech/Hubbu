@@ -6,13 +6,11 @@ import { createUser, getUserByEmail } from "@/actions/user";
 import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 import bcrypt from "bcryptjs";
-import { prisma } from "@/lib/prisma";
 import { ActionResponse } from "@/lib/types";
 import {
   deleteVerificationTokensByEmail,
   getVerificationTokensByEmail,
 } from "@/actions/verification-token";
-import { redirect } from "next/navigation";
 
 export const login = async (
   values: z.infer<typeof loginSchema>,

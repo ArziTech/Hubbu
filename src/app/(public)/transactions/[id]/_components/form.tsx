@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useTransition } from "react";
+import React, { useTransition } from "react";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import {
@@ -24,8 +24,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { Coupon, Template, TemplateCategory, User } from "@prisma/client";
+import { Template, User } from "@prisma/client";
 import { createTransaction } from "@/actions/transaction";
 import { v4 as uuidv4 } from "uuid";
 import { getTemplateCategoryTitle } from "@/actions/template-category";
@@ -39,8 +38,7 @@ interface TransactionFormProps {
 
 const TransactionForm = ({ user, template }: TransactionFormProps) => {
   const router = useRouter();
-  const [isLoading, startTransition] = useTransition();
-  const [amount, setAmount] = useState<number>(100000);
+  const [, startTransition] = useTransition();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,7 +53,6 @@ const TransactionForm = ({ user, template }: TransactionFormProps) => {
       // TEMP:
       // router.push("/login");
     }
-    const inputCoupont: Coupon = {};
 
     startTransition(async () => {
       // TEMP
@@ -84,7 +81,7 @@ const TransactionForm = ({ user, template }: TransactionFormProps) => {
               name: template.title,
               price: template.price,
               quantity: 1,
-              url: `${process.env.NEXT_PUBLIC_DOMAIN}/templates/${template.id}`,
+              // url: `${process.env.NEXT_PUBLIC_DOMAIN}/templates/${template.id}`,
             },
           ],
           customer_details: {

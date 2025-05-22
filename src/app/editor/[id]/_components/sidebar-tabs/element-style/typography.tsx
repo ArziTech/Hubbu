@@ -1,5 +1,4 @@
 "use client";
-import { EditorElement } from "@/components/providers/editor";
 import { useEditor } from "@/components/providers/editor/context";
 import {
   AccordionContent,
@@ -13,11 +12,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/global/custom-icon";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   AlignCenter,
   AlignLeft,
@@ -26,8 +24,6 @@ import {
   ArrowUpToLine,
   FoldVertical,
 } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { getAllFonts } from "@/actions/google-font";
 import { handleStyleChange } from "@/components/providers/editor/events";
 import { fonts } from "@/constant/google-font";
 
@@ -214,7 +210,7 @@ const Typography = () => {
           <Tabs
             defaultValue="account"
             className="w-[400px]"
-            onChange={(event) => {
+            onChange={() => {
               // handleStyleChange({
               //   id: 'alignLeft'
               //   value: event.target.ge

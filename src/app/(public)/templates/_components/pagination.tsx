@@ -12,8 +12,6 @@ import {
 import { useQueryState } from "nuqs";
 
 const PaginatedComponent = ({
-  totalItems,
-  perPage = 10,
   totalPage,
 }: {
   totalItems: number;

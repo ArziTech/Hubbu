@@ -4,7 +4,7 @@ import TransactionForm from "./_components/form";
 import { auth } from "@/auth";
 import { getTemplateById } from "@/actions/template";
 import { ActionResponse } from "@/lib/types";
-import { Template, TemplateCategory } from "@prisma/client";
+import { Template } from "@prisma/client";
 import notFound from "@/app/not-found";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {

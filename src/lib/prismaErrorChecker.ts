@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-// @ts-ignore
+// @ts-expect-error this is okay
 export function prismaErrorChecker(error): {
   status: "SUCCESS" | "ERROR";
   error: string;

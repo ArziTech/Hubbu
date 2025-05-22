@@ -1,32 +1,10 @@
 "use client";
-import { useEditor } from "@/components/providers/editor/context";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  DiamondPlus,
-  GalleryVerticalEnd,
-  Highlighter,
-  Layers,
-  LayoutList,
-  Image as ImageIcon,
-  Images,
-  Ellipsis,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Tabs } from "@/components/ui/tabs";
 import TabList from "@/app/editor/[id]/_components/tab-list";
 import TabContent from "@/app/editor/[id]/_components/tab-content";
-import { ResizablePanelGroup } from "@/components/ui/resizable";
 
-type Props = {};
-const Sidebar = (props: Props) => {
-  const { state, dispatch } = useEditor();
+const Sidebar = () => {
   return (
     <Sheet open={true} modal={false}>
       <Tabs defaultValue={"steps"} className={"w-full"}>
