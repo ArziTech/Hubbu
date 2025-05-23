@@ -3,7 +3,7 @@ import MaxwidthWrapper from "@/components/global/maxwidth-wrapper";
 
 const Footer = () => {
   return (
-    <div className={"mt-12 border-t border-border bg-background"}>
+    <div className={"z-50 border-t border-border bg-background"}>
       <MaxwidthWrapper>
         <div
           className={

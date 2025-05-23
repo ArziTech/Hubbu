@@ -107,6 +107,7 @@ export function numberColumn<TData>(): ColumnDef<TData> {
     ),
   };
 }
+
 export function moreActionColumn<TData>({
   editFNAction,
   deleteFNAction,
@@ -243,6 +244,7 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div className={"flex justify-between"}>
+        {/* START Filter Section */}
         <div className="flex items-center py-4">
           <Input
             placeholder={`Search by ${filterBy}....`}
@@ -255,6 +257,9 @@ export function DataTable<TData, TValue>({
             className="max-w-sm"
           />
         </div>
+        {/* END Filter Section */}
+
+        {/* START Column & Delete many Section */}
         <div className="flex items-center justify-end space-x-2 py-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -348,7 +353,9 @@ export function DataTable<TData, TValue>({
             </DialogContent>
           </Dialog>
         </div>
+        {/* START Column & Delete many Section */}
       </div>
+
       <Table className={"rounded-md bg-white"}>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

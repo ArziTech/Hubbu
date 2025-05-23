@@ -28,6 +28,8 @@ import { Template, User } from "@prisma/client";
 import { createTransaction } from "@/actions/transaction";
 import { v4 as uuidv4 } from "uuid";
 import { getTemplateCategoryTitle } from "@/actions/template-category";
+import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 
 const formSchema = z.object({});
 
@@ -259,6 +261,14 @@ const TransactionForm = ({ user, template }: TransactionFormProps) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          <div className={"flex items-center"}>
+            <Checkbox className={"me-4"} />
+            dengan melakukan pembelian, anda setuju terhadap
+            <Link href={"/tnc"} className={"px-1 font-medium"}>
+              {" "}
+              Terms and Conditions
+            </Link>
+          </div>
           <Button type={"submit"} className={"w-full"}>
             Lanjut Bayar
           </Button>

@@ -4,7 +4,7 @@ import Footer from "@/components/global/footer";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className={"flex w-full flex-col"}>
+    <div className={"flex h-full w-full flex-col"}>
       <Navbar></Navbar>
       {children}
       <Footer></Footer>

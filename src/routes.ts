@@ -32,6 +32,7 @@ export const publicRoutes: string[] = [
   "/reset-password",
   "/unauthorized",
   "/not-found",
+  "/tnc",
   "/contact",
 ];
 
